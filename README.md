@@ -2,7 +2,7 @@
 
 Create pausable scrolling text with a simple function call
 
-Scroller(
+Scroller( <br>
 direction,              Options: "left", "right"
 better performance,               true, false
 speed,                            Higher = slower

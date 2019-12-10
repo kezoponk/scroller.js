@@ -2,19 +2,19 @@
 
 ##### Create pausable scrolling text with a simple function call
 
-Scroller(<br>
+Scroller(<br><br>
 Direction: <br>
 Options: "left", "right" <br>
 <br>
-better performance:
+Better performance:<br>
 true, false <br>
 <br>
-Speed:
+Speed:<br>
 Higher = slower <br>
 <br>
 div-containing-buttons-id, <br>
 buttons-to-scroll-name, <br>
-scrollID <br>
+scrollID) <br>
 
  <br>
 

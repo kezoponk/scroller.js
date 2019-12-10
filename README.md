@@ -33,6 +33,8 @@ Scroller("left", true, 10, scrolldiv, scrollbtn, 2);
 ```
 
 
+<br>
+<br>
 ##### Scroll to right, multiple scrolls is to demanding, moving 1px every 100ms
 
 ```html

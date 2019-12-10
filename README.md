@@ -2,7 +2,8 @@
 
 ##### Create pausable scrolling text with a simple function call
 
-Scroller( <br>
+Scroller <br>
+( <br>
 direction,              Options: "left", "right" <br>
 better performance,               true, false <br>
 speed,                            Higher = slower <br>
@@ -32,9 +33,8 @@ scrollID <br>
 Scroller("left", true, 10, scrolldiv, scrollbtn, 2);
 ```
 
+<br>
 
-<br>
-<br>
 ##### Scroll to right, multiple scrolls is to demanding, moving 1px every 100ms
 
 ```html

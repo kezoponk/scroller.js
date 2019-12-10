@@ -17,6 +17,7 @@ scrollID
 
 #### Scroll to left, performance better but not as smooth animation, moving 1px every 10ms
 
+```html
 <div class="scroll-left" onmouseover="StopS(2)" onmouseout="StartS(2)" id="scrolldiv">
     <button name="scrollbtn" class="scroll-graybtn">Example</button>
     <button name="scrollbtn" class="scroll-graybtn">Political</button>
@@ -26,5 +27,7 @@ scrollID
     <button name="scrollbtn" class="scroll-graybtn">Program</button>
     <button name="scrollbtn" class="scroll-graybtn">School</button>
 </div>
-
+```
+```javascript
 Scroller("left", true, 10, scrollbtndiv, scrollbtn, 2);
+```

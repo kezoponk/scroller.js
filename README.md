@@ -1,7 +1,7 @@
 # Scroller.js
 
 ##### Create pausable scrolling text with a simple function call
-
+<p>
 Scroller <br>
 ( <br>
 direction,              Options: "left", "right" <br>
@@ -11,7 +11,7 @@ div-containing-buttons-id, <br>
 buttons-to-scroll-name, <br>
 scrollID <br>
 ) <br>
-
+</p>
 
 
 ## Examples:

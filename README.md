@@ -18,8 +18,6 @@ scrollID) <br>
 
  <br>
 
-
-
 ## Examples:
 
 ##### Scroll to left. Performance better, less smooth animation. Moving 1px every 10ms
@@ -39,7 +37,6 @@ scrollID) <br>
 Scroller("left", true, 10, scrolldiv, scrollbtn, 2);
 ```
 
-<br>
 
 ##### Scroll to right. Multiple scrolls is to demanding. Moving 1px every 100ms
 

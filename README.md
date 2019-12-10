@@ -3,13 +3,13 @@
 Create pausable scrolling text with a simple function call
 
 Scroller( <br>
-direction,              Options: "left", "right"
-better performance,               true, false
-speed,                            Higher = slower
-div-containing-buttons-id,
-buttons-to-scroll-name, 
-scrollID
-)
+direction,              Options: "left", "right" <br>
+better performance,               true, false <br>
+speed,                            Higher = slower <br>
+div-containing-buttons-id, <br>
+buttons-to-scroll-name, <br>
+scrollID <br>
+) <br>
 
 
 ## Examples:

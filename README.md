@@ -22,7 +22,7 @@ scrollID) <br>
 
 ## Examples:
 
-##### Scroll to left, performance better but not as smooth animation, moving 1px every 10ms
+##### Scroll to left. Performance better, less smooth animation. Moving 1px every 10ms
 
 ```html
 <div class="scroll-left" onmouseover="StopS(2)" onmouseout="StartS(2)" id="scrolldiv">
@@ -41,7 +41,7 @@ Scroller("left", true, 10, scrolldiv, scrollbtn, 2);
 
 <br>
 
-##### Scroll to right, multiple scrolls is to demanding, moving 1px every 100ms
+##### Scroll to right. Multiple scrolls is to demanding. Moving 1px every 100ms
 
 ```html
 <div class="scroll-left" onmouseover="StopS(2)" onmouseout="StartS(2)" id="scrolldivexample">

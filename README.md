@@ -16,17 +16,17 @@ div-containing-buttons-id, <br>
 buttons-to-scroll-name, <br>
 scrollID) <br>
 
-<span style="color:red"> Must CSS </span>
+<code> Must CSS </code>
 
 ```css
-  div-containing-buttons {
-    overflow: hidden;
-    position: relative;
-  }
+div-containing-buttons {
+  overflow: hidden;
+  position: relative;
+}
   
-  buttons-to-scroll {
-    position: absolute;
-  }
+buttons-to-scroll {
+  position: absolute;
+}
 ```
 
 ## Examples:

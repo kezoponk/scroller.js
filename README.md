@@ -16,6 +16,19 @@ div-containing-buttons-id, <br>
 buttons-to-scroll-name, <br>
 scrollID) <br>
 
+<span style="color:red"> Must CSS </span>
+
+```css
+  div-containing-buttons {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  buttons-to-scroll {
+    position: absolute;
+  }
+```
+
 ## Examples:
 
 ##### Scroll to left. Performance better, less smooth animation. Moving 1px every 10ms

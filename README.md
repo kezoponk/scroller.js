@@ -15,8 +15,8 @@ Higher = slower <br>
 div-containing-buttons-id, <br>
 buttons-to-scroll-name, <br>
 scrollID) <br>
-- - - -
-##### Must CSS 
+<br>
+#### Must CSS 
 
 ```css
 div-containing-buttons {

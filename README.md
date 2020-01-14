@@ -16,7 +16,7 @@ div-containing-buttons-id, <br>
 buttons-to-scroll-name, <br>
 scrollID) <br>
 
-<code> Must CSS </code>
+> **Must CSS 
 
 ```css
 div-containing-buttons {

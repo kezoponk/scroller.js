@@ -57,11 +57,9 @@ function calculatePositions(btnlength, divlength, scrollbtn, parentdiv) {
     btnlength = btnlength + scrollbtn[addedbtn].offsetWidth;
     addedbtn++;
   }
-
   // Create buttons start position
   for(step = scrollbtn.length-1; step >= 0; step--) {
     var btnstartpos = step*scrollbtn[step].offsetWidth;
-
     scrollbtn[step].style.left = btnstartpos+"px";
   }
   // Return the width of all buttons together
@@ -85,7 +83,6 @@ function Scroller(direction, method, tickspeed, parentdiv, childbtn, id) {
   if(method) {
     timing = 0;
   }
-
   // Reset button positions and calculate new positions if window is resized
   window.addEventListener("resize", function() {
     btnlength = calculatePositions(btnlength, divlength, scrollbtn, parentdiv);

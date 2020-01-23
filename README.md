@@ -48,7 +48,7 @@ Scroller("left", true, 10, scrolldiv, scrollbtn, 2);
 ```
 <br>
 
-##### Scroll to right. Multiple scrolls is to demanding. Moving 1px every 100ms
+##### Scroll to right. Multiple scrolls is too demanding. Moving 1px every 100ms
 
 ```html
 <div class="scroll-left" onmouseover="StopS(2)" onmouseout="StartS(2)" id="scrolldivexample">

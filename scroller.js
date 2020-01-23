@@ -1,21 +1,23 @@
+// Created by Albin Eriksson, https://github.com/kezoponk
+// MIT License, https://opensource.org/licenses/MIT
 
-// Scroller(direction, better performance, speed, div-containing-buttons, buttons-to-scroll, scrollID)
-
-var pause = [];
+var paused = [];
 
 function leftcycle(scrollbtn, btnlength, tickspeed, speed, id) {
   var step = 0;
   var condition = 0-scrollbtn[0].offsetWidth;
 
   while(step<scrollbtn.length) {
-    if(pause[id]) { break; }
-
+    if(paused[id]) { break; }
+    // Create new position of current button
     var newbtnpos = scrollbtn[step].offsetLeft-speed;
 
+    // If button position is left= 0 - buttonwidth, then move to back of div
     if(newbtnpos<=condition) {
       var startbtnpos = (btnlength+scrollbtn[step].offsetLeft)-condition;
       scrollbtn[step].setAttribute("style", "left:"+startbtnpos+"px; transition:left 0s linear");
     } else {
+      // If not, move left
       scrollbtn[step].setAttribute("style", "left: "+newbtnpos+"px; transition:left "+tickspeed+"ms linear");
     }
     step++;
@@ -25,31 +27,25 @@ function leftcycle(scrollbtn, btnlength, tickspeed, speed, id) {
 function rightcycle(scrollbtn, btnlength, tickspeed, speed, id) {
   var step = 0;
   while(step<scrollbtn.length) {
-    if(pause[id]) { break; }
-
+    if(paused[id]) { break; }
+    // Create new position of current button
     var newbtnpos = scrollbtn[step].offsetLeft+speed;
 
+    // If button position is right= div-width + buttonwidth, then move to back of div
     if(newbtnpos>=btnlength) {
       var startbtnpos = 0-scrollbtn[step].offsetWidth;
       scrollbtn[step].setAttribute("style", "left:"+startbtnpos+"px; transition:left 0s linear");
     } else {
+      // If not, move right
       scrollbtn[step].setAttribute("style", "left: "+newbtnpos+"px; transition:left "+tickspeed+"ms linear");
     }
     step++;
   }
 }
 
-function Scroller(direction, method, tickspeed, parentdiv, childbtn, id) {
-
-  var startscroll, btnlength = 0;
-  var speed = 1;
-  var timing = tickspeed;
-
-  var scrollbtn = document.getElementsByName(childbtn);
-  var btnlength = (scrollbtn[0].offsetWidth*scrollbtn.length)-scrollbtn[0].offsetWidth,
-  divlength = document.getElementById(parentdiv).offsetWidth;
-
+function calculatePositions(btnlength, divlength, scrollbtn, parentdiv) {
   var addedbtn = 0;
+  // If the total width of all buttons in div is less then div width then append buttons until div is filled
   while(true) {
     if(btnlength<divlength) {} else { break; }
 
@@ -60,35 +56,56 @@ function Scroller(direction, method, tickspeed, parentdiv, childbtn, id) {
     document.getElementById(parentdiv).appendChild(element);
     btnlength = btnlength + scrollbtn[addedbtn].offsetWidth;
     addedbtn++;
-
-
   }
 
+  // Create buttons start position
   for(step = scrollbtn.length-1; step >= 0; step--) {
     var btnstartpos = step*scrollbtn[step].offsetWidth;
 
     scrollbtn[step].style.left = btnstartpos+"px";
   }
+  // Return the width of all buttons together
+  return btnlength;
+}
 
+function Scroller(direction, method, tickspeed, parentdiv, childbtn, id) {
+  // Get all buttons in an array since childbtn is the name attribute
+  var scrollbtn = document.getElementsByName(childbtn);
+
+  var speed  = 1,         // Pixels each button move each iteration
+      timing = tickspeed; // If performance is false then timing is transition time
+
+  // Calculate how mutch extra space is needed outside of div (not visible space)
+  var btnlength = (scrollbtn[0].offsetWidth*scrollbtn.length)-scrollbtn[0].offsetWidth,
+
+  divlength = document.getElementById(parentdiv).offsetWidth;
+  btnlength = calculatePositions(btnlength, divlength, scrollbtn, parentdiv);
+
+  // If performance is true then set transition time to zero
   if(method) {
     timing = 0;
   }
 
+  // Reset button positions and calculate new positions if window is resized
+  window.addEventListener("resize", function() {
+    btnlength = calculatePositions(btnlength, divlength, scrollbtn, parentdiv);
+  });
+
   if(direction=="left") {
-    startscroll = setInterval(function() {
+    setInterval(function() {
       leftcycle(scrollbtn, btnlength, timing, speed, id);
     },tickspeed);
   } else {
-    startscroll = setInterval(function() {
+    setInterval(function() {
       rightcycle(scrollbtn, btnlength, timing, speed, id);
     },tickspeed);
   }
 }
-
+// Actions to start or pause scrolling
 function StartS(id) {
-  pause[id] = false;
+  paused[id] = false;
 }
 
 function StopS(id) {
-  pause[id] = true;
+  paused[id] = true;
 }

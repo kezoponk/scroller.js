@@ -20,7 +20,7 @@ scrollID) <br>
 ```css
 div-containing-buttons {
   overflow: hidden;
-  position: (relative or absolute);
+  position: /* relative or absolute */;
 }
   
 buttons-to-scroll {

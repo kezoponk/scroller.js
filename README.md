@@ -1,8 +1,8 @@
 # Scroller.js
 
 #### Create pausable scrolling text with a simple function call
-
-Arguments
+<br>
+***Arguments***
 >
 >Scroller(<br><br>
 >Direction: <br>
@@ -39,7 +39,7 @@ buttons-to-scroll {
     <button name="scrollbtn" class="scroll-graybtn">Example</button>
     <button name="scrollbtn" class="scroll-graybtn">Political</button>
     <button name="scrollbtn" class="scroll-graybtn">App</button>
-    <button name="scrollbtn" class="scroll-graybtn">Irak</button>
+    <button name="scrollbtn" class="scroll-graybtn">Programming</button>
     <button name="scrollbtn" class="scroll-graybtn">Feminist</button>
     <button name="scrollbtn" class="scroll-graybtn">Program</button>
     <button name="scrollbtn" class="scroll-graybtn">School</button>
@@ -57,7 +57,7 @@ Scroller("left", true, 10, scrolldiv, scrollbtn, 2);
     <button name="scrollbtnexample" class="scroll-graybtn">Example</button>
     <button name="scrollbtnexample" class="scroll-graybtn">Political</button>
     <button name="scrollbtnexample" class="scroll-graybtn">App</button>
-    <button name="scrollbtnexample" class="scroll-graybtn">Irak</button>
+    <button name="scrollbtnexample" class="scroll-graybtn">Programming</button>
     <button name="scrollbtnexample" class="scroll-graybtn">Feminist</button>
     <button name="scrollbtnexample" class="scroll-graybtn">Program</button>
     <button name="scrollbtnexample" class="scroll-graybtn">School</button>

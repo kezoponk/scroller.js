@@ -3,7 +3,7 @@
 #### Create pausable scrolling text with a simple function call
 <br>
 
-***Arguments***
+**Arguments**
 >Scroller(<br><br>
 >Direction: <br>
 >Options: "left", "right" <br>

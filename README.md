@@ -3,7 +3,7 @@
 #### Create pausable scrolling text with a simple function call
 <br>
 ***Arguments***
->
+
 >Scroller(<br><br>
 >Direction: <br>
 >Options: "left", "right" <br>
@@ -17,6 +17,7 @@
 >div-containing-buttons-id, <br>
 >buttons-to-scroll-name, <br>
 >scrollID) <br>
+
 #### Important CSS 
 
 ```css

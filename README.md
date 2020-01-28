@@ -1,6 +1,6 @@
 # Scroller.js
 
-* Create pausable scrolling text with a simple function call
+Create pausable scrolling text with a simple one-liner
 
 **Arguments**
 >Scroller(<br><br>

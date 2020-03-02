@@ -1,6 +1,5 @@
 // Created by Albin Eriksson, https://github.com/kezoponk
 // MIT License, https://opensource.org/licenses/MIT
-
 var paused = [];
 
 function leftcycle(scrollbtn, btnlength, tickspeed, speed, id) {
@@ -11,7 +10,6 @@ function leftcycle(scrollbtn, btnlength, tickspeed, speed, id) {
     if(paused[id]) { break; }
     // Create new position of current button
     var newbtnpos = scrollbtn[step].offsetLeft-speed;
-
     // If button position is left= 0 - buttonwidth, then move to back of div
     if(newbtnpos<=condition) {
       var startbtnpos = (btnlength+scrollbtn[step].offsetLeft)-condition;
@@ -30,7 +28,6 @@ function rightcycle(scrollbtn, btnlength, tickspeed, speed, id) {
     if(paused[id]) { break; }
     // Create new position of current button
     var newbtnpos = scrollbtn[step].offsetLeft+speed;
-
     // If button position is right= div-width + buttonwidth, then move to back of div
     if(newbtnpos>=btnlength) {
       var startbtnpos = 0-scrollbtn[step].offsetWidth;
@@ -48,7 +45,6 @@ function calculatePositions(btnlength, divlength, scrollbtn, parentdiv) {
   // If the total width of all buttons in div is less then div width then append buttons until div is filled
   while(true) {
     if(btnlength<divlength) {} else { break; }
-
     var element = document.createElement("button");
     element.className = scrollbtn[addedbtn].className;
     element.name = scrollbtn[addedbtn].name;
@@ -78,7 +74,6 @@ function Scroller(direction, method, tickspeed, parentdiv, childbtn, id) {
 
   divlength = document.getElementById(parentdiv).offsetWidth;
   btnlength = calculatePositions(btnlength, divlength, scrollbtn, parentdiv);
-
   // If performance is true then set transition time to zero
   if(method) {
     timing = 0;

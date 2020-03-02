@@ -1,5 +1,6 @@
 // Created by Albin Eriksson, https://github.com/kezoponk
 // MIT License, https://opensource.org/licenses/MIT
+
 var paused = [];
 
 function leftcycle(scrollbtn, btnlength, tickspeed, speed, id) {

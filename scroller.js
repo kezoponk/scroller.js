@@ -1,19 +1,19 @@
-// Created by Albin Eriksson, https://github.com/kezoponk
-// MIT License, https://opensource.org/licenses/MIT
+// @author Albin Eriksson, https://github.com/kezoponk
+// @license MIT, https://opensource.org/licenses/MIT
 
 var paused = [];
 
 function leftcycle(scrollbtn, btnlength, tickspeed, speed, id) {
-  var step = 0;
-  var condition = 0-scrollbtn[0].offsetWidth;
+  let step = 0;
 
   while(step<scrollbtn.length) {
     if(paused[id]) { break; }
     // Create new position of current button
-    var newbtnpos = scrollbtn[step].offsetLeft-speed;
+    let newbtnpos = scrollbtn[step].offsetLeft-speed;
+        condition = 0-scrollbtn[step].offsetWidth;
     // If button position is left= 0 - buttonwidth, then move to back of div
     if(newbtnpos<=condition) {
-      var startbtnpos = (btnlength+scrollbtn[step].offsetLeft)-condition;
+      let startbtnpos = (btnlength+scrollbtn[step].offsetLeft)-condition;
       scrollbtn[step].setAttribute("style", "left:"+startbtnpos+"px; transition:left 0s linear");
     } else {
       // If not, move left
@@ -24,14 +24,14 @@ function leftcycle(scrollbtn, btnlength, tickspeed, speed, id) {
 }
 
 function rightcycle(scrollbtn, btnlength, tickspeed, speed, id) {
-  var step = 0;
+  let step = 0;
   while(step<scrollbtn.length) {
     if(paused[id]) { break; }
     // Create new position of current button
-    var newbtnpos = scrollbtn[step].offsetLeft+speed;
+    let newbtnpos = scrollbtn[step].offsetLeft+speed;
     // If button position is right= div-width + buttonwidth, then move to back of div
     if(newbtnpos>=btnlength) {
-      var startbtnpos = 0-scrollbtn[step].offsetWidth;
+      let startbtnpos = 0-scrollbtn[step].offsetWidth;
       scrollbtn[step].setAttribute("style", "left:"+startbtnpos+"px; transition:left 0s linear");
     } else {
       // If not, move right
@@ -42,11 +42,11 @@ function rightcycle(scrollbtn, btnlength, tickspeed, speed, id) {
 }
 
 function calculatePositions(btnlength, divlength, scrollbtn, parentdiv) {
-  var addedbtn = 0;
+  let addedbtn = 0;
   // If the total width of all buttons in div is less then div width then append buttons until div is filled
   while(true) {
     if(btnlength<divlength) {} else { break; }
-    var element = document.createElement("button");
+    let element = document.createElement("button");
     element.className = scrollbtn[addedbtn].className;
     element.name = scrollbtn[addedbtn].name;
     element.innerHTML = scrollbtn[addedbtn].innerHTML;
@@ -56,7 +56,7 @@ function calculatePositions(btnlength, divlength, scrollbtn, parentdiv) {
   }
   // Create buttons start position
   for(step = scrollbtn.length-1; step >= 0; step--) {
-    var btnstartpos = step*scrollbtn[step].offsetWidth;
+    let btnstartpos = step*scrollbtn[step].offsetWidth;
     scrollbtn[step].style.left = btnstartpos+"px";
   }
   // Return the width of all buttons together
@@ -65,16 +65,16 @@ function calculatePositions(btnlength, divlength, scrollbtn, parentdiv) {
 
 function Scroller(direction, method, tickspeed, parentdiv, childbtn, id) {
   // Get all buttons in an array since childbtn is the name attribute
-  var scrollbtn = document.getElementsByName(childbtn);
+  const scrollbtn = document.getElementsByName(childbtn);
 
-  var speed  = 1,         // Pixels each button move each iteration
+  let speed  = 1,         // Pixels each button move each iteration
       timing = tickspeed; // If performance is false then timing is transition time
 
   // Calculate how mutch extra space is needed outside of div (not visible space)
-  var btnlength = (scrollbtn[0].offsetWidth*scrollbtn.length)-scrollbtn[0].offsetWidth,
+  let btnlength = (scrollbtn[0].offsetWidth*scrollbtn.length)-scrollbtn[0].offsetWidth,
+      divlength = document.getElementById(parentdiv).offsetWidth;
+      btnlength = calculatePositions(btnlength, divlength, scrollbtn, parentdiv);
 
-  divlength = document.getElementById(parentdiv).offsetWidth;
-  btnlength = calculatePositions(btnlength, divlength, scrollbtn, parentdiv);
   // If performance is true then set transition time to zero
   if(method) {
     timing = 0;

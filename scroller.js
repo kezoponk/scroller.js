@@ -83,7 +83,7 @@ function Scroller(direction, method, tickspeed, parentdiv, childbtn, id) {
   window.addEventListener("resize", function() {
     btnlength = calculatePositions(btnlength, divlength, scrollbtn, parentdiv);
   });
-
+  
   if(direction=="left") {
     setInterval(function() {
       leftcycle(scrollbtn, btnlength, timing, speed, id);
@@ -94,11 +94,11 @@ function Scroller(direction, method, tickspeed, parentdiv, childbtn, id) {
     },tickspeed);
   }
 }
+
 // Actions to start or pause scrolling
 function StartS(id) {
   paused[id] = false;
 }
-
 function StopS(id) {
   paused[id] = true;
 }

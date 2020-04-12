@@ -1,100 +1,106 @@
 // @author Albin Eriksson, https://github.com/kezoponk
 // @license MIT, https://opensource.org/licenses/MIT
-
 var paused = [];
 
-function leftcycle(scrollbtn, btnlength, tickspeed, speed, id) {
-  let step = 0;
-
-  while(step<scrollbtn.length) {
-    if(paused[id]) { break; }
+function leftCycle(scrollBtn, btnLength, tickSpeed, speed, id) {
+  let index = 0;
+  while(index<scrollBtn.length && !paused[id]) {
     // Create new position of current button
-    let newbtnpos = scrollbtn[step].offsetLeft-speed;
-        condition = 0-scrollbtn[step].offsetWidth;
+    let newBtnPos = scrollBtn[index].offsetLeft-speed;
+        condition = 0-scrollBtn[index].offsetWidth;
     // If button position is left= 0 - buttonwidth, then move to back of div
-    if(newbtnpos<=condition) {
-      let startbtnpos = (btnlength+scrollbtn[step].offsetLeft)-condition;
-      scrollbtn[step].setAttribute("style", "left:"+startbtnpos+"px; transition:left 0s linear");
+    if(newBtnPos<=condition) {
+      let startBtnPos = (btnLength+scrollBtn[index].offsetLeft)-condition;
+      scrollBtn[index].style.left = startBtnPos+"px";
+      scrollBtn[index].style.transition = "left "+tickSpeed+"ms linear";
     } else {
       // If not, move left
-      scrollbtn[step].setAttribute("style", "left: "+newbtnpos+"px; transition:left "+tickspeed+"ms linear");
+      scrollBtn[index].style.left = newBtnPos+"px";
+      scrollBtn[index].style.transition = "left "+tickSpeed+"ms linear";
     }
-    step++;
+    index++;
   }
 }
 
-function rightcycle(scrollbtn, btnlength, tickspeed, speed, id) {
-  let step = 0;
-  while(step<scrollbtn.length) {
-    if(paused[id]) { break; }
+function rightCycle(scrollBtn, btnLength, tickSpeed, speed, id) {
+  let index = 0;
+  while(index<scrollBtn.length && !paused[id]) {
     // Create new position of current button
-    let newbtnpos = scrollbtn[step].offsetLeft+speed;
+    let newBtnPos = scrollBtn[index].offsetLeft+speed;
     // If button position is right= div-width + buttonwidth, then move to back of div
-    if(newbtnpos>=btnlength) {
-      let startbtnpos = 0-scrollbtn[step].offsetWidth;
-      scrollbtn[step].setAttribute("style", "left:"+startbtnpos+"px; transition:left 0s linear");
+    if(newBtnPos>=btnLength) {
+      let startBtnPos = 0-scrollBtn[index].offsetWidth;
+      scrollBtn[index].style.left = startBtnPos+"px";
+      scrollBtn[index].style.transition = "left 0ms linear";
     } else {
       // If not, move right
-      scrollbtn[step].setAttribute("style", "left: "+newbtnpos+"px; transition:left "+tickspeed+"ms linear");
+      scrollBtn[index].style.left = newBtnPos+"px";
+      scrollBtn[index].style.transition = "left "+tickSpeed+"ms linear";
     }
-    step++;
+    index++;
   }
 }
 
-function calculatePositions(btnlength, divlength, scrollbtn, parentdiv) {
-  let addedbtn = 0;
-  // If the total width of all buttons in div is less then div width then append buttons until div is filled
-  while(true) {
-    if(btnlength<divlength) {} else { break; }
-    let element = document.createElement("button");
-    element.className = scrollbtn[addedbtn].className;
-    element.name = scrollbtn[addedbtn].name;
-    element.innerHTML = scrollbtn[addedbtn].innerHTML;
-    document.getElementById(parentdiv).appendChild(element);
-    btnlength = btnlength + scrollbtn[addedbtn].offsetWidth;
-    addedbtn++;
+function calculatePositions(initLength, btnLength, scrollBtn, parentDiv) {
+  // Remove previous supplemental buttons if window size is changed
+  for(i = scrollBtn.length-1; i >= initLength; i--) {
+    scrollBtn[index].parentNode.removeChild(scrollBtn[i]);
   }
-  // Create buttons start position
-  for(step = scrollbtn.length-1; step >= 0; step--) {
-    let btnstartpos = step*scrollbtn[step].offsetWidth;
-    scrollbtn[step].style.left = btnstartpos+"px";
+  // If the total width of all buttons in div is less then div width then append buttons until div is filled
+  let divLength = parentDiv.offsetWidth, index = 0;
+  while(btnLength<divLength) {
+    let element = document.createElement("button");
+    element.className = scrollBtn[index].className;
+    element.name = scrollBtn[index].name;
+    element.innerHTML = scrollBtn[index].innerHTML;
+    parentDiv.appendChild(element);
+    btnLength = btnLength + scrollBtn[index].offsetWidth;
+    index++;
+  }
+  // Create buttons start positions
+  let btnStartPos = 0;
+  for(index = scrollBtn.length-1; index >= 0; index--) {
+    scrollBtn[index].style.left = btnStartPos+"px";
+    btnStartPos += scrollBtn[index].offsetWidth;
   }
   // Return the width of all buttons together
-  return btnlength;
+  return btnLength;
 }
 
-function Scroller(direction, method, tickspeed, parentdiv, childbtn, id) {
+function Scroller(direction, method, tickSpeed, parentdiv, childbtn, id) {
   // Get all buttons in an array since childbtn is the name attribute
-  const scrollbtn = document.getElementsByName(childbtn);
+  const scrollBtn = document.getElementsByName(childbtn);
+  const parentDiv = document.getElementById(parentdiv);
+  const initButtonQuantity = scrollBtn.length;
 
   let speed  = 1,         // Pixels each button move each iteration
-      timing = tickspeed; // If performance is false then timing is transition time
+      timing = tickSpeed; // If performance is false then timing is transition time
 
   // Calculate how mutch extra space is needed outside of div (not visible space)
-  let btnlength = (scrollbtn[0].offsetWidth*scrollbtn.length)-scrollbtn[0].offsetWidth,
-      divlength = document.getElementById(parentdiv).offsetWidth;
-      btnlength = calculatePositions(btnlength, divlength, scrollbtn, parentdiv);
-
+  let firstLength = 0;
+  for(index = scrollBtn.length-2; index >= 0; index--) {
+    firstLength += scrollBtn[index].offsetWidth;
+  }
+  let btnLength = calculatePositions(initButtonQuantity, firstLength, scrollBtn, parentDiv);
   // If performance is true then set transition time to zero
   if(method) {
     timing = 0;
   }
   // Reset button positions and calculate new positions if window is resized
   window.addEventListener("resize", function() {
-    btnlength = calculatePositions(btnlength, divlength, scrollbtn, parentdiv);
+    btnLength = calculatePositions(initButtonQuantity, firstLength, scrollBtn, parentDiv);
   });
-  
+
   if(direction=="left") {
     setInterval(function() {
-      leftcycle(scrollbtn, btnlength, timing, speed, id);
-    },tickspeed);
+      leftCycle(scrollBtn, btnLength, timing, speed, id);
+    },tickSpeed);
   } else {
     setInterval(function() {
-      rightcycle(scrollbtn, btnlength, timing, speed, id);
-    },tickspeed);
+      rightCycle(scrollBtn, btnLength, timing, speed, id);
+    },tickSpeed);
   }
 }
-
 // Actions to start or pause scrolling
 function StartS(id) {
   paused[id] = false;

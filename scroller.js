@@ -1,5 +1,6 @@
 // @author Albin Eriksson, https://github.com/kezoponk
 // @license MIT, https://opensource.org/licenses/MIT
+
 var paused = [];
 
 function leftCycle(scrollBtn, btnLength, tickSpeed, speed, id) {
@@ -90,7 +91,7 @@ function Scroller(direction, method, tickSpeed, parentdiv, childbtn, id) {
   window.addEventListener("resize", function() {
     btnLength = calculatePositions(initButtonQuantity, firstLength, scrollBtn, parentDiv);
   });
-
+  
   if(direction=="left") {
     setInterval(function() {
       leftCycle(scrollBtn, btnLength, timing, speed, id);
@@ -101,6 +102,7 @@ function Scroller(direction, method, tickSpeed, parentdiv, childbtn, id) {
     },tickSpeed);
   }
 }
+
 // Actions to start or pause scrolling
 function StartS(id) {
   paused[id] = false;

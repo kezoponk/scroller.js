@@ -45,7 +45,7 @@ function rightCycle(scrollBtn, btnLength, tickSpeed, speed, id) {
 function calculatePositions(initLength, btnLength, scrollBtn, parentDiv) {
   // Remove previous supplemental buttons if window size is changed
   for(i = scrollBtn.length-1; i >= initLength; i--) {
-    scrollBtn[index].parentNode.removeChild(scrollBtn[i]);
+    scrollBtn[i].parentNode.removeChild(scrollBtn[i]);
   }
   // If the total width of all buttons in div is less then div width then append buttons until div is filled
   let divLength = parentDiv.offsetWidth, index = 0;

@@ -36,17 +36,17 @@ buttons-to-scroll {
 
 ```html
 <div class="scroll-left" onmouseover="StopS(2)" onmouseout="StartS(2)" id="scrolldiv">
-    <button name="scrollbtn" class="scroll-graybtn">Example</button>
-    <button name="scrollbtn" class="scroll-graybtn">Political</button>
-    <button name="scrollbtn" class="scroll-graybtn">App</button>
-    <button name="scrollbtn" class="scroll-graybtn">Programming</button>
-    <button name="scrollbtn" class="scroll-graybtn">Feminist</button>
-    <button name="scrollbtn" class="scroll-graybtn">Program</button>
-    <button name="scrollbtn" class="scroll-graybtn">School</button>
+    <button name="scrollbtn" class="scrollbutton">Example</button>
+    <button name="scrollbtn" class="scrollbutton">Political</button>
+    <button name="scrollbtn" class="scrollbutton">App</button>
+    <button name="scrollbtn" class="scrollbutton">Programming</button>
+    <button name="scrollbtn" class="scrollbutton">Feminist</button>
+    <button name="scrollbtn" class="scrollbutton">Program</button>
+    <button name="scrollbtn" class="scrollbutton">School</button>
 </div>
 ```
 ```javascript
-Scroller("left", true, 10, scrolldiv, scrollbtn, 2);
+Scroller("left", true, 10, "scrolldiv", "scrollbtn", 2);
 ```
 <br>
 
@@ -54,15 +54,15 @@ Scroller("left", true, 10, scrolldiv, scrollbtn, 2);
 
 ```html
 <div class="scroll-left" onmouseover="StopS(2)" onmouseout="StartS(2)" id="scrolldivexample">
-    <button name="scrollbtnexample" class="scroll-graybtn">Example</button>
-    <button name="scrollbtnexample" class="scroll-graybtn">Political</button>
-    <button name="scrollbtnexample" class="scroll-graybtn">App</button>
-    <button name="scrollbtnexample" class="scroll-graybtn">Programming</button>
-    <button name="scrollbtnexample" class="scroll-graybtn">Feminist</button>
-    <button name="scrollbtnexample" class="scroll-graybtn">Program</button>
-    <button name="scrollbtnexample" class="scroll-graybtn">School</button>
+    <button name="scrollbtnexample" class="scrollbutton">Example</button>
+    <button name="scrollbtnexample" class="scrollbutton">Political</button>
+    <button name="scrollbtnexample" class="scrollbutton">App</button>
+    <button name="scrollbtnexample" class="scrollbutton">Programming</button>
+    <button name="scrollbtnexample" class="scrollbutton">Feminist</button>
+    <button name="scrollbtnexample" class="scrollbutton">Program</button>
+    <button name="scrollbtnexample" class="scrollbutton">School</button>
 </div>
 ```
 ```javascript
-Scroller("right", false, 100, scrolldivexample, scrollbtnexample, 2);
+Scroller("right", false, 100, "scrolldivexample", "scrollbtnexample", 2);
 ```

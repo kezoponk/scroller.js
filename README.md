@@ -36,13 +36,13 @@ buttons-to-scroll {
 
 ```html
 <div class="scroll-left" onmouseover="StopS(2)" onmouseout="StartS(2)" id="scrolldiv">
-    <button name="scrollbtn" class="scrollbutton">Example</button>
-    <button name="scrollbtn" class="scrollbutton">Political</button>
-    <button name="scrollbtn" class="scrollbutton">App</button>
-    <button name="scrollbtn" class="scrollbutton">Programming</button>
-    <button name="scrollbtn" class="scrollbutton">Feminist</button>
-    <button name="scrollbtn" class="scrollbutton">Program</button>
-    <button name="scrollbtn" class="scrollbutton">School</button>
+    <button name="scrollbtn" class="scrollbutton" onclick="window.location=example.html">Example</button>
+    <button name="scrollbtn" class="scrollbutton" onclick="window.location=political.html">Political</button>
+    <button name="scrollbtn" class="scrollbutton" onclick="window.location=app.html">App</button>
+    <button name="scrollbtn" class="scrollbutton" onclick="window.location=programming.html">Programming</button>
+    <button name="scrollbtn" class="scrollbutton" onclick="window.location=feminist.html">Feminist</button>
+    <button name="scrollbtn" class="scrollbutton" onclick="window.location=program.html">Program</button>
+    <button name="scrollbtn" class="scrollbutton" onclick="window.location=school.html">School</button>
 </div>
 ```
 ```javascript

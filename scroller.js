@@ -54,6 +54,10 @@ function calculatePositions(initLength, btnLength, scrollBtn, parentDiv) {
     element.className = scrollBtn[index].className;
     element.name = scrollBtn[index].name;
     element.innerHTML = scrollBtn[index].innerHTML;
+    if(scrollBtn[index].getAttribute("onclick"))
+    {
+      element.setAttribute("onclick", scrollBtn[index].getAttribute("onclick"));
+    }
     parentDiv.appendChild(element);
     btnLength = btnLength + scrollBtn[index].offsetWidth;
     index++;

@@ -5,13 +5,13 @@ Create pausable scrolling text with a simple one-liner
 **Arguments**
 >Scroller(<br><br>
 >Direction: <br>
->Options: "left", "right" <br>
+>Options: "left", "right" <br>,
 ><br>
 >Better performance:<br>
->true, false <br>
+>true, false <br>,
 ><br>
 >Speed:<br>
->Higher = slower <br>
+>Higher = slower <br>,
 ><br>
 >div-containing-buttons-id, <br>
 >buttons-to-scroll-name, <br>

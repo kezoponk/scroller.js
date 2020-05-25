@@ -3,7 +3,7 @@
 Create pausable scrolling text with a simple one-liner
 
 **Arguments**
->Scroller(<br><br>
+>Scroller(<br>
 >Direction: <br>
 >Options: "left", "right" <br>,
 ><br>

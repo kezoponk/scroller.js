@@ -5,10 +5,10 @@ Create pausable scrolling text with a simple one-liner
 **Arguments**
 >Scroller(<br>
 >Direction: <br>
->Options: "left", "right" <br>,
+>"left" or "right" <br>,
 ><br>
 >Better performance:<br>
->true, false <br>,
+>true or false <br>,
 ><br>
 >Speed:<br>
 >Higher = slower <br>,

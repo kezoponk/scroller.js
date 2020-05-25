@@ -53,7 +53,7 @@ Scroller("left", true, 10, "scrolldiv", "scrollbtn", 2);
 ##### Scroll to right. Multiple scrolls is too demanding. Moving 1px every 100ms
 
 ```html
-<div class="scroll-left" onmouseover="StopS(2)" onmouseout="StartS(2)" id="scrolldivexample">
+<div class="scroll-left" onmouseover="StopS(1)" onmouseout="StartS(1)" id="scrolldivexample">
     <button name="scrollbtnexample" class="scrollbutton">Example</button>
     <button name="scrollbtnexample" class="scrollbutton">Political</button>
     <button name="scrollbtnexample" class="scrollbutton">App</button>
@@ -64,5 +64,5 @@ Scroller("left", true, 10, "scrolldiv", "scrollbtn", 2);
 </div>
 ```
 ```javascript
-Scroller("right", false, 100, "scrolldivexample", "scrollbtnexample", 2);
+Scroller("right", false, 100, "scrolldivexample", "scrollbtnexample", 1);
 ```

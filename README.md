@@ -3,19 +3,22 @@
 Create pausable scrolling text with a simple one-liner
 
 **Arguments**
+Scroller("scrolldivexample", "scrollbtnexample", { scrollid: 1, speed: 100, direction: "right", performance: true });
+
 >Scroller(<br>
->Direction: <br>
->"left" or "right" <br>,
-><br>
->Better performance:<br>
->true or false <br>,
-><br>
->Speed:<br>
->Higher = slower <br>,
-><br>
 >div-containing-buttons-id, <br>
 >buttons-to-scroll-name, <br>
->scrollID) <br>
+> {
+> direction: <br>
+>"left" or "right" <br>,
+><br>
+> performance:<br>
+>true or false <br>,
+><br>
+> speed:<br>
+> higher = slower <br>,
+><br>
+> scroll-id <br> });
 
 #### Important CSS 
 
@@ -46,7 +49,7 @@ buttons-to-scroll {
 </div>
 ```
 ```javascript
-Scroller("left", true, 10, "scrolldiv", "scrollbtn", 2);
+Scroller("scrolldiv", "scrollbtn", { scrollid: 2, speed: 10, direction: "left" });
 ```
 <br>
 
@@ -64,5 +67,5 @@ Scroller("left", true, 10, "scrolldiv", "scrollbtn", 2);
 </div>
 ```
 ```javascript
-Scroller("right", false, 100, "scrolldivexample", "scrollbtnexample", 1);
+Scroller("scrolldivexample", "scrollbtnexample", { scrollid: 1, speed: 100, direction: "right", performance: true });
 ```

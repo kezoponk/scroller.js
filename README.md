@@ -3,8 +3,6 @@
 Create pausable scrolling text with a simple one-liner
 
 **Arguments**
-Scroller("scrolldivexample", "scrollbtnexample", { scrollid: 1, speed: 100, direction: "right", performance: true });
-
 >Scroller(<br>
 >div-containing-buttons-id, <br>
 >buttons-to-scroll-name, <br>

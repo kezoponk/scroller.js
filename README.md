@@ -12,7 +12,7 @@ Scroller("scrolldivexample", "scrollbtnexample", { scrollid: 1, speed: 100, dire
 > direction: <br>
 >"left" or "right" <br>,
 ><br>
-> performance:<br>
+> performance[false]:<br>
 >true or false <br>,
 ><br>
 > speed:<br>

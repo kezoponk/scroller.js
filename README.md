@@ -8,7 +8,7 @@ Scroller("scrolldivexample", "scrollbtnexample", { scrollid: 1, speed: 100, dire
 >Scroller(<br>
 >div-containing-buttons-id, <br>
 >buttons-to-scroll-name, <br>
-> {
+> { <br>
 > direction: <br>
 >"left" or "right" <br>,
 ><br>
@@ -18,7 +18,7 @@ Scroller("scrolldivexample", "scrollbtnexample", { scrollid: 1, speed: 100, dire
 > speed:<br>
 > higher = slower <br>,
 ><br>
-> scroll-id <br> });
+> scrollid: 1-99999 <br> });
 
 #### Important CSS 
 

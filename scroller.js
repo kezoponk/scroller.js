@@ -76,7 +76,7 @@ function calculatePositions(initLength, btnLength, scrollBtn, parentDiv) {
 /**
  * @param {string} parentid - ID of div containing scrolling buttons
  * @param {string} childname - Name attribute of buttons
- * @param {Object} options = { speed, scrollid, performance, direction }
+ * @param {Object} options - { speed, scrollid, performance, direction }
  */
 function Scroller(parentid, childname, options) {
   // Get all buttons in an array since childbtn is the name attribute

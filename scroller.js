@@ -6,10 +6,11 @@ var paused = [];
 
 function leftCycle(scrollBtn, btnLength, tickSpeed, id) {
   let index = 0;
-  while(index<scrollBtn.length && !paused[id]) {
+  let length = scrollBtn.length;
+  while(index<length && !paused[id]) {
     // Create new position of current button
     let newBtnPos = scrollBtn[index].offsetLeft - 1;
-        condition = 0-scrollBtn[index].offsetWidth;
+        condition = 0 - scrollBtn[index].offsetWidth;
     // If button position is left= 0 - buttonwidth, then move to back of div
     if(newBtnPos<=condition) {
       let startBtnPos = (btnLength+scrollBtn[index].offsetLeft)-condition;
@@ -26,12 +27,13 @@ function leftCycle(scrollBtn, btnLength, tickSpeed, id) {
 
 function rightCycle(scrollBtn, btnLength, tickSpeed, id) {
   let index = 0;
-  while(index<scrollBtn.length && !paused[id]) {
+  let length = scrollBtn.length;
+  while(index<length && !paused[id]) {
     // Create new position of current button
     let newBtnPos = scrollBtn[index].offsetLeft + 1;
     // If button position is right= div-width + buttonwidth, then move to back of div
     if(newBtnPos>=btnLength) {
-      let startBtnPos = 0-scrollBtn[index].offsetWidth;
+      let startBtnPos = 0 - scrollBtn[index].offsetWidth;
       scrollBtn[index].style.left = startBtnPos+"px";
       scrollBtn[index].style.transition = "left 0ms linear";
     } else {
@@ -45,7 +47,7 @@ function rightCycle(scrollBtn, btnLength, tickSpeed, id) {
 
 function calculatePositions(initLength, btnLength, scrollBtn, parentDiv) {
   // Remove previous supplemental buttons if window size is changed
-  for(var i = scrollBtn.length-1; i >= initLength; i--) {
+  for(i = scrollBtn.length-1; i >= initLength; i--) {
     scrollBtn[i].parentNode.removeChild(scrollBtn[i]);
   }
   // If the total width of all buttons in div is less then div width then append buttons until div is filled
@@ -76,7 +78,7 @@ function calculatePositions(initLength, btnLength, scrollBtn, parentDiv) {
 /**
  * @param {string} parentid - ID of div containing scrolling buttons
  * @param {string} childname - Name attribute of buttons
- * @param {Object} options - { speed, scrollid, performance, direction }
+ * @param {Object} options = { speed, scrollid, performance, direction }
  */
 function Scroller(parentid, childname, options) {
   // Get all buttons in an array since childbtn is the name attribute
@@ -103,13 +105,13 @@ function Scroller(parentid, childname, options) {
     btnLength = calculatePositions(initButtonQuantity, firstLength, scrollBtns, parentDiv);
   });
 
-  if(direction=="left") {
+  if(options.direction=="left") {
     setInterval(function() {
-      leftCycle(scrollBtns, btnLength, timing, id);
+      leftCycle(scrollBtns, btnLength, timing, options.scrollid);
     },options.speed);
   } else {
     setInterval(function() {
-      rightCycle(scrollBtns, btnLength, timing, id);
+      rightCycle(scrollBtns, btnLength, timing, options.scrollid);
     },options.speed);
   }
 }

@@ -14,7 +14,6 @@ class Scroller {
 
   leftCycle(scrollBtn, tickSpeed, id) {
     this.btnIndex = 0;
-    
     while(this.btnIndex<this.btnLength && !paused[id]) {
       // Create new position of current button
       this.newBtnPos = scrollBtn[this.btnIndex].offsetLeft - 1,
@@ -38,7 +37,6 @@ class Scroller {
 
   rightCycle(scrollBtn, tickSpeed, id) {
     this.btnIndex = 0;
-
     while(this.btnIndex<this.btnLength && !paused[id]) {
       // Create new position of current button
       this.newBtnPos = scrollBtn[this.btnIndex].offsetLeft + 1;
@@ -107,13 +105,11 @@ class Scroller {
         largestBtn = currentButtonWidth;
       }
     }
-
-    let timing = 0;
     // If performance is false then timing is transition time
+    let timing = 0;
     if(!options.performance && options.performance != null) {
       timing = options.speed;
     }
-
     // Calculate positions for all buttons
     this.calculatePositions(scrollBtns, parentDiv, options, initButtonQuantity, firstLength, largestBtn);
 

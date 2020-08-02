@@ -47,7 +47,7 @@ buttons-to-scroll {
 </div>
 ```
 ```javascript
-Scroller("scrolldiv", "scrollbtn", { scrollid: 2, speed: 10, direction: "left" });
+Scroller("scrolldiv", "scrollbtn", { scrollid: 2, direction: "left", speed: 10 });
 ```
 <br>
 
@@ -65,5 +65,5 @@ Scroller("scrolldiv", "scrollbtn", { scrollid: 2, speed: 10, direction: "left" }
 </div>
 ```
 ```javascript
-Scroller("scrolldivexample", "scrollbtnexample", { scrollid: 1, speed: 100, direction: "right", performance: true });
+Scroller("scrolldivexample", "scrollbtnexample", { scrollid: 1, direction: "right", speed: 100, performance: true });
 ```

@@ -3,20 +3,20 @@
 Create pausable scrolling text with a simple one-liner
 
 **Arguments**
->Scroller(<br>
->div-containing-buttons-id, <br>
->buttons-to-scroll-name, <br>
-> { <br>
-> direction: <br>
->"left" or "right" <br>,
-><br>
-> performance[false]:<br>
->true or false <br>,
-><br>
-> speed:<br>
-> higher = slower <br>,
-><br>
-> scrollid: 1-99999 <br> });
+Scroller(<br>
+div-containing-buttons-id, <br>
+buttons-to-scroll-name, <br>
+ { <br>
+ direction: <br>
+"left" or "right" <br>,
+<br>
+ performance[false]:<br>
+true or false <br>,
+<br>
+ speed:<br>
+ higher = slower <br>,
+<br>
+ scrollid: 1-99999 <br> });
 
 #### Important CSS 
 

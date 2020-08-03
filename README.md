@@ -3,6 +3,7 @@
 Create pausable scrolling text with a simple one-liner
 
 ### Arguments
+```javascript
 Scroller(<br>
 div-containing-buttons-id, <br>
 buttons-to-scroll-name
@@ -22,7 +23,7 @@ buttons-to-scroll-name
 &emsp;scrollid: 1-99999 
 <br> 
 });
-
+```
 #### Important CSS 
 
 ```css

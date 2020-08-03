@@ -7,7 +7,7 @@ Create pausable scrolling text with a simple one-liner
 | Options | Usage |
 | --- | --- |
 | `direction` | left or right |
-| `performance` | true or false, true enables transition time on each pixel move |
+| `performance` | true or false, true enables transition time on each pixel move, false is default |
 | `speed` | higher = slower |
 | `scrollid` | 1-999, used when starting or pausing the scroll |
 

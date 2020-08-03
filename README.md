@@ -7,9 +7,9 @@ Create pausable scrolling text with a simple one-liner
 | Options | Usage |
 | --- | --- |
 | `direction` | left or right |
-| `performance` | true or false <br>true enables transition time on each pixel move, false is default |
+| `performance` | true or false <br>True enables transition time on each pixel move. False is default |
 | `speed` | higher = slower |
-| `scrollid` | 1-999 <br>used when starting or pausing the scroll |
+| `scrollid` | 1-999 <br>Used when starting or pausing the scroll |
 
 <code>
   new Scroller(div-containing-buttons-id, buttons-to-scroll-name, { <strong>Options</strong> })

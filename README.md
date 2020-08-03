@@ -4,7 +4,7 @@ Create pausable scrolling text with a simple one-liner
 
 ### Options
 <code>
-new Scroller(div-containing-buttons-id, buttons-to-scroll-name, { Options })
+  new Scroller(div-containing-buttons-id, buttons-to-scroll-name, { <strong>Options</strong> })
 </code>
 
 | Options | Usage |

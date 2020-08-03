@@ -6,6 +6,7 @@ Create pausable scrolling text with a simple one-liner
 <code>
 new Scroller(div-containing-buttons-id, buttons-to-scroll-name, { Options })
 </code>
+
 | Options | Usage |
 | --- | --- |
 | `direction` | left or right |

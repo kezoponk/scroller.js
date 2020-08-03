@@ -9,9 +9,9 @@ Create pausable scrolling text with a simple one-liner
 | `performance` | true or false, true enables transition time on each pixel move |
 | `speed` | higher = slower |
 | `scrollid` | 1-999, used when starting or pausing the scroll |
-```javascript
+<code>
 new Scroller(div-containing-buttons-id, buttons-to-scroll-name, { Options })
-```
+</code>
 
 #### Important CSS 
 

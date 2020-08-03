@@ -4,7 +4,7 @@ Create pausable scrolling text with a simple one-liner
 
 ### Options
 ```javascript
-Scroller(div-containing-buttons-id, buttons-to-scroll-name, { Options })
+new Scroller(div-containing-buttons-id, buttons-to-scroll-name, { Options })
 ```
 | Options | Usage |
 | --- | --- |
@@ -42,7 +42,7 @@ buttons-to-scroll {
 </div>
 ```
 ```javascript
-Scroller("scrolldiv", "scrollbtn", { scrollid: 2, direction: "left", speed: 10 });
+new Scroller("scrolldiv", "scrollbtn", { scrollid: 2, direction: "left", speed: 10 });
 ```
 <br>
 
@@ -60,5 +60,5 @@ Scroller("scrolldiv", "scrollbtn", { scrollid: 2, direction: "left", speed: 10 }
 </div>
 ```
 ```javascript
-Scroller("scrolldivexample", "scrollbtnexample", { scrollid: 1, direction: "right", speed: 100, performance: true });
+new Scroller("scrolldivexample", "scrollbtnexample", { scrollid: 1, direction: "right", speed: 100, performance: true });
 ```

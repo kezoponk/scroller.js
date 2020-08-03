@@ -3,7 +3,7 @@
 Create pausable scrolling text with a simple one-liner
 
 **Arguments**
-<br>Scroller(<br>
+<br>Scroller<br>(
 div-containing-buttons-id, <br>
 buttons-to-scroll-name
 , <br>

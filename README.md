@@ -2,8 +2,10 @@
 
 Create pausable scrolling text with a simple one-liner
 
-### Arguments
+### Options
+```javascript
 Scroller(div-containing-buttons-id, buttons-to-scroll-name, { Options })
+```
 | Options | Usage |
 | --- | --- |
 | `direction` | left or right |

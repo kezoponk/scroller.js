@@ -1,6 +1,6 @@
 # Scroller.js
 
-Create pausable scrolling text with a simple one-liner[![Dependency Status](https://david-dm.org/dwyl/esta.svg)](https://david-dm.org/dwyl/esta)
+Create pausable scrolling text with a simple one-liner [![Dependency Status](https://david-dm.org/dwyl/esta.svg)](https://david-dm.org/dwyl/esta)
 
 ### Options
 

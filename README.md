@@ -3,27 +3,14 @@
 Create pausable scrolling text with a simple one-liner
 
 ### Arguments
-```javascript
-Scroller(<br>
-div-containing-buttons-id, <br>
-buttons-to-scroll-name
-, <br>
-{ <br>
-&emsp;direction: <br>
-&emsp;"left" or "right" <br>
-,
-<br>
-&emsp;performance[false]:<br>
-&emsp;true or false <br>
-,
-<br>
-&emsp;speed:<br>
-&emsp;higher = slower <br>,
-<br>
-&emsp;scrollid: 1-99999 
-<br> 
-});
-```
+Scroller(div-containing-buttons-id, buttons-to-scroll-name, {Arguments})
+| Arguments | Used For |
+| --- | --- |
+| `direction` | left or right |
+| `performance` | true or false, true enables transition time on each pixel move |
+| `speed` | higher = slower |
+| `scrollid` | 1-999, used when starting or pausing the scroll |
+
 #### Important CSS 
 
 ```css

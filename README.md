@@ -3,8 +3,8 @@
 Create pausable scrolling text with a simple one-liner
 
 ### Arguments
-Scroller(div-containing-buttons-id, buttons-to-scroll-name, {Arguments})
-| Arguments | Used For |
+Scroller(div-containing-buttons-id, buttons-to-scroll-name, { Options })
+| Options | Usage |
 | --- | --- |
 | `direction` | left or right |
 | `performance` | true or false, true enables transition time on each pixel move |

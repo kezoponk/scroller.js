@@ -1,5 +1,5 @@
 # Scroller.js ![stability-stable](https://img.shields.io/badge/stability-stable-green.svg) ![Dependency Status](https://david-dm.org/dwyl/esta.svg)
-Create pausable scrolling text with a simple one-liner
+Create pausable scrolling text with a simple one-liner<br>
 
 | Options | Usage |
 | --- | --- |

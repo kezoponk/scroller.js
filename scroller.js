@@ -2,18 +2,16 @@
 * @author Albin Eriksson, https://github.com/kezoponk
 * @license MIT, https://opensource.org/licenses/MIT
 */
-var paused = [];
-
 class Scroller {
-  leftCycle(scrollBtn, tickSpeed, id) {
+  leftCycle(scrollBtn, tickSpeed) {
     this.btnIndex = 0;
-    while(this.btnIndex<this.btnLength && !paused[id]) {
+    while(this.btnIndex < this.btnLength && !this.paused) {
       // Create new position of current button
       this.newBtnPos = scrollBtn[this.btnIndex].offsetLeft - 1,
       this.resetCondition = 0 - scrollBtn[this.btnIndex].offsetWidth;
 
       // If previous button position is (left = 0 - buttonwidth) = past visible end of div, then move to back of the line
-      if(this.newBtnPos<=this.resetCondition) {
+      if(this.newBtnPos <= this.resetCondition) {
         // startBtnPos = lastbuttons left + width
         let startBtnPos = scrollBtn[this.lastBtnIndex].offsetLeft+scrollBtn[this.lastBtnIndex].offsetWidth - 1;
         scrollBtn[this.btnIndex].style.left = startBtnPos+'px';
@@ -28,15 +26,15 @@ class Scroller {
     }
   }
 
-  rightCycle(scrollBtn, tickSpeed, id) {
+  rightCycle(scrollBtn, tickSpeed) {
     this.btnIndex = 0;
-    while(this.btnIndex<this.btnLength && !paused[id]) {
+    while(this.btnIndex < this.btnLength && !this.paused) {
       // Create new position of current button
       this.newBtnPos = scrollBtn[this.btnIndex].offsetLeft + 1;
       this.resetCondition = scrollBtn[this.lastBtnIndex].offsetLeft;
 
       // If previous button position is (left = 0), then move current btn to beginning
-      if(this.resetCondition==0) {
+      if(this.resetCondition == 0) {
         // startBtnPos = lastbuttons 1 - width, 1 instead of 0 to fill gap of 1px created at first iteration
         let startBtnPos = 1 - scrollBtn[this.btnIndex].offsetWidth;
         scrollBtn[this.btnIndex].style.left = startBtnPos+'px';
@@ -78,14 +76,15 @@ class Scroller {
   }
 
   /**
-  * @param {string} parentid - ID of div containing scrolling buttons
-  * @param {Object} options = { speed, scrollid, performance, direction }
+  * @param {string} parentIdentifier - id or class of div containing scrolling buttons
+  * @param {Object} options = { speed, performance, direction }
   */
-  constructor(parentid, options) {
+  constructor(parentIdentifier, options) {
     // Get all buttons in an array since childbtn is the name attribute
-    const parentDiv = document.querySelector(parentid);
+    const parentDiv = document.querySelector(parentIdentifier);
     const scrollBtns = parentDiv.children;
     const initButtonQuantity = scrollBtns.length;
+    this.paused = false;
 
     // Calculate how mutch extra space is needed outside of div (not visible space)
     let firstLength = 0,
@@ -109,6 +108,14 @@ class Scroller {
     window.addEventListener('resize', function() {
       this.calculatePositions(scrollBtns, parentDiv, options, initButtonQuantity, firstLength, largestBtn);
     }.bind(this));
+    
+    // Pause eventlistener for mouse over and out
+    parentDiv.addEventListener("mouseover", function( event ) {
+      this.paused = true;
+    }.bind(this), false);
+    parentDiv.addEventListener("mouseout", function( event ) {
+      this.paused = false;
+    }.bind(this), false);
 
     // Declaring variables outside of loop for optimization
     this.btnIndex,
@@ -120,21 +127,13 @@ class Scroller {
     // Finally begin button movement
     if(options.direction=='left') {
       setInterval(function() {
-        this.leftCycle(scrollBtns, timing, options.scrollid);
+        this.leftCycle(scrollBtns, timing);
       }.bind(this), options.speed);
     }
     else if(options.direction=='right'){
       setInterval(function() {
-        this.rightCycle(scrollBtns, timing, options.scrollid);
+        this.rightCycle(scrollBtns, timing);
       }.bind(this), options.speed);
     }
   }
-}
-
-// Actions to start or pause scrolling
-function StartS(id) {
-  paused[id] = false;
-}
-function StopS(id) {
-  paused[id] = true;
 }

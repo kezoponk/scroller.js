@@ -25,6 +25,7 @@ buttons-to-scroll {
 ```
 
 ## Examples:
+##### Scroll to left. Performance better, less smooth animation. Moving 1px every 10ms
 
 ```html
 <div class="scroll-left" id="scrolldiv">
@@ -40,9 +41,10 @@ buttons-to-scroll {
 ```javascript
 new Scroller('#scrolldiv', { direction: 'left', speed: 10 });
 ```
-##### Scroll to left. Performance better, less smooth animation. Moving 1px every 10ms
 
 ___
+
+##### Scroll to right. Multiple scrolls is too demanding. Moving 1px every 100ms
 
 ```html
 <div class="scroll-left">
@@ -58,4 +60,3 @@ ___
 ```javascript
 new Scroller('.scroll-left', { direction: 'right', speed: 100, performance: true });
 ```
-##### Scroll to right. Multiple scrolls is too demanding. Moving 1px every 100ms

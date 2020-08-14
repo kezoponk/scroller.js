@@ -47,7 +47,7 @@ ___
 ##### Scroll to right. Multiple scrolls is too demanding. Moving 1px every 100ms
 
 ```html
-<div class="scroll-left">
+<div class="scroll-right">
   <a href="/a/"> <button class="scrollbutton">Example</button> </a>
   <a href="/b/"> <button class="scrollbutton">Political</button> </a>
   <a href="/c/"> <button class="scrollbutton">App</button> </a>
@@ -58,5 +58,5 @@ ___
 </div>
 ```
 ```javascript
-new Scroller('.scroll-left', { direction: 'right', speed: 100, performance: true });
+new Scroller('.scroll-right', { direction: 'right', speed: 100, performance: true });
 ```

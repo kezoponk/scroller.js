@@ -42,7 +42,7 @@ buttons-to-scroll {
 ```javascript
 new Scroller('#scrolldiv', { direction: 'left', speed: 10 });
 ```
-<br>
+
 ___
 
 ##### Scroll to right. Multiple scrolls is too demanding. Moving 1px every 100ms

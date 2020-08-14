@@ -5,13 +5,6 @@
 var paused = [];
 
 class Scroller {
-  // Declaring variables outside of loop for optimization
-  btnIndex;
-  btnLength;
-  newBtnPos;
-  resetCondition;
-  lastBtnIndex;
-
   leftCycle(scrollBtn, tickSpeed, id) {
     this.btnIndex = 0;
     while(this.btnIndex<this.btnLength && !paused[id]) {
@@ -86,13 +79,12 @@ class Scroller {
 
   /**
   * @param {string} parentid - ID of div containing scrolling buttons
-  * @param {string} childname - Name attribute of buttons
   * @param {Object} options = { speed, scrollid, performance, direction }
   */
-  constructor(parentid, childname, options) {
+  constructor(parentid, options) {
     // Get all buttons in an array since childbtn is the name attribute
-    const scrollBtns = document.getElementsByName(childname);
-    const parentDiv = document.getElementById(parentid);
+    const parentDiv = document.querySelector(parentid);
+    const scrollBtns = parentDiv.children;
     const initButtonQuantity = scrollBtns.length;
 
     // Calculate how mutch extra space is needed outside of div (not visible space)
@@ -117,6 +109,13 @@ class Scroller {
     window.addEventListener('resize', function() {
       this.calculatePositions(scrollBtns, parentDiv, options, initButtonQuantity, firstLength, largestBtn);
     }.bind(this));
+
+    // Declaring variables outside of loop for optimization
+    this.btnIndex,
+    this.btnLength,
+    this.newBtnPos,
+    this.resetCondition,
+    this.lastBtnIndex;
 
     // Finally begin button movement
     if(options.direction=='left') {

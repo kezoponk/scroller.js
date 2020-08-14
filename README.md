@@ -40,7 +40,7 @@ buttons-to-scroll {
 </div>
 ```
 ```javascript
-new Scroller("#scrolldiv", { direction: "left", speed: 10 });
+new Scroller('#scrolldiv', { direction: 'left', speed: 10 });
 ```
 <br>
 
@@ -58,5 +58,5 @@ new Scroller("#scrolldiv", { direction: "left", speed: 10 });
 </div>
 ```
 ```javascript
-new Scroller(".scroll-left", { direction: "right", speed: 100, performance: true });
+new Scroller('.scroll-left', { direction: 'right', speed: 100, performance: true });
 ```

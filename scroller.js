@@ -108,14 +108,9 @@ class Scroller {
     window.addEventListener('resize', function() {
       this.calculatePositions(scrollBtns, parentDiv, options, initButtonQuantity, firstLength, largestBtn);
     }.bind(this));
-    
     // Pause eventlistener for mouse over and out
-    parentDiv.addEventListener("mouseover", function( event ) {
-      this.paused = true;
-    }.bind(this), false);
-    parentDiv.addEventListener("mouseout", function( event ) {
-      this.paused = false;
-    }.bind(this), false);
+    parentDiv.addEventListener("mouseover", function() { this.paused = true; }.bind(this));
+    parentDiv.addEventListener("mouseout", function() { this.paused = false; }.bind(this));
 
     // Declaring variables outside of loop for optimization
     this.btnIndex,

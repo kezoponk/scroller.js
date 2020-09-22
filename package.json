@@ -1,0 +1,27 @@
+{
+  "name": "scrollerjs",
+  "version": "1.0.0",
+  "description": "Create pausable scrolling text with a simple one-liner",
+  "main": "scroller.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kezoponk/scroller.js.git"
+  },
+  "keywords": [
+    "scrolling-text",
+    "rolling-text",
+    "javascript-library",
+    "moving-text",
+    "trainstation",
+    "trainstation-text"
+  ],
+  "author": "kezoponk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kezoponk/scroller.js/issues"
+  },
+  "homepage": "https://github.com/kezoponk/scroller.js#readme"
+}

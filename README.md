@@ -8,7 +8,7 @@ $ npm install @kezoponk/scroller
 ```
 Install via package.json:
 ```json
-"@kezoponk/scroller": "1.0.0" 
+"@kezoponk/scroller": "1.0.1" 
 ```
 Or download the dist/scroller.min.js manually
 ```html
@@ -33,7 +33,7 @@ div-containing-buttons {
   overflow: hidden;
   position: /* relative or absolute */;
 }
-  
+
 buttons-to-scroll {
   position: absolute;
 }

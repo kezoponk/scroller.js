@@ -54,7 +54,7 @@ buttons-to-scroll {
 ```javascript
 new Scroller('#scrolldiv', { direction: 'left', speed: 10 });
 ```
-Scroll to left. Performance better, less smooth animation. Moving 1px every 10ms
+- Scroll to left. Performance better, less smooth animation. Moving 1px every 10ms
 
 ___
 
@@ -72,4 +72,4 @@ ___
 ```javascript
 new Scroller('.scroll-right', { direction: 'right', speed: 100, performance: true });
 ```
-Scroll to right. Multiple scrolls is too demanding. Moving 1px every 100ms
+- Scroll to right. Multiple scrolls is too demanding. Moving 1px every 100ms

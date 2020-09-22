@@ -24,7 +24,7 @@ Or download the dist/scroller.min.js manually
 
 <code>
   new Scroller(div-containing-buttons, { <strong>Options</strong> })
-</code><br>
+</code><br><br>
 
 **Important CSS**
 
@@ -40,7 +40,7 @@ buttons-to-scroll {
 ```
 
 ## Examples
-###### Scroll to left. Performance better, less smooth animation. Moving 1px every 10ms
+Scroll to left. Performance better, less smooth animation. Moving 1px every 10ms
 
 ```html
 <div class="scroll-left" id="scrolldiv">
@@ -59,7 +59,7 @@ new Scroller('#scrolldiv', { direction: 'left', speed: 10 });
 
 ___
 
-###### Scroll to right. Multiple scrolls is too demanding. Moving 1px every 100ms
+Scroll to right. Multiple scrolls is too demanding. Moving 1px every 100ms
 
 ```html
 <div class="scroll-right">

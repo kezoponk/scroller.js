@@ -12,7 +12,7 @@ Install via package.json:
 ```
 Or download the dist/scroller.min.js manually
 ```html
-<script type="text/javascript" src="/static/scroller.js"></script>
+<script type="text/javascript" src="scroller.min.js"></script>
 ```
 
 ## Getting Started

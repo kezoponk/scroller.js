@@ -1,8 +1,8 @@
 {
-  "name": "scrollerjs",
+  "name": "@kezoponk/scroller",
   "version": "1.0.0",
   "description": "Create pausable scrolling text with a simple one-liner",
-  "main": "scroller.js",
+  "main": "dist/scroller.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,7 +18,7 @@
     "trainstation",
     "trainstation-text"
   ],
-  "author": "kezoponk",
+  "author": "Albin Eriksson",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/kezoponk/scroller.js/issues"

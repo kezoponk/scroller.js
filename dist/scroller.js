@@ -132,3 +132,5 @@ class Scroller {
     }
   }
 }
+
+module.exports = Scroller;

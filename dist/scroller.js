@@ -133,4 +133,6 @@ class Scroller {
   }
 }
 
-module.exports = Scroller;
+if (typeof(module) == 'object') {
+  module.exports = Scroller;
+}

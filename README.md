@@ -41,7 +41,7 @@ buttons-to-scroll {
 
 ## Examples
 
-<h3 align="center">1</h3>
+<h3 align="center">#1</h3>
 
 ```html
 <div class="scroll-left" id="scrolldiv">
@@ -63,7 +63,7 @@ new Scroller('#scrolldiv', { direction: 'left', speed: 10 });
 
 ___
 
-<h3 align="center">2</h3>
+<h3 align="center">#2</h3>
 
 ```html
 <div class="scroll-right">

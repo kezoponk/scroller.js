@@ -40,7 +40,9 @@ buttons-to-scroll {
 ```
 
 ## Examples
+
 <h1 align="center">1</h1>
+
 ```html
 <div class="scroll-left" id="scrolldiv">
   <button name="scrollbtn" class="scrollbutton" onclick="window.location=example.html">Example</button>
@@ -62,6 +64,7 @@ new Scroller('#scrolldiv', { direction: 'left', speed: 10 });
 ___
 
 <h1 align="center">2</h1>
+
 ```html
 <div class="scroll-right">
   <a href="/a/"> <button class="scrollbutton">Example</button> </a>

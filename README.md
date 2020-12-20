@@ -38,6 +38,7 @@ buttons-to-scroll {
   position: absolute;
 }
 ```
+<br>
 
 ## Examples
 

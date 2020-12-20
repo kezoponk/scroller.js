@@ -39,6 +39,8 @@ buttons-to-scroll {
 }
 ```
 
+<br>
+
 ### Example #1
 
 ```html

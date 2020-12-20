@@ -15,7 +15,7 @@ Or download the dist/scroller.min.js manually
 <script type="text/javascript" src="scroller.min.js"></script>
 ```
 
-## Getting Started
+## Usage
 | Options | Usage |
 | --- | --- |
 | `direction` | left or right |

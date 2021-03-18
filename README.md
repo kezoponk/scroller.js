@@ -44,14 +44,14 @@ buttons-to-scroll {
 ### Example #1
 
 ```html
-<div class="scroll-left" id="scrolldiv">
-  <button name="scrollbtn" class="scrollbutton" onclick="window.location=example.html">Example</button>
-  <button name="scrollbtn" class="scrollbutton" onclick="window.location=political.html">Political</button>
-  <button name="scrollbtn" class="scrollbutton" onclick="window.location=app.html">App</button>
-  <button name="scrollbtn" class="scrollbutton" onclick="window.location=programming.html">Programming</button>
-  <button name="scrollbtn" class="scrollbutton" onclick="window.location=feminist.html">Feminist</button>
-  <button name="scrollbtn" class="scrollbutton" onclick="window.location=program.html">Program</button>
-  <button name="scrollbtn" class="scrollbutton" onclick="window.location=school.html">School</button>
+<div id="scrolldiv" class="scroll-left">
+  <button class="scrollbutton">Example</button>
+  <button class="scrollbutton">Political</button>
+  <button class="scrollbutton">App</button>
+  <button class="scrollbutton">Programming</button>
+  <button class="scrollbutton">Feminist</button>
+  <button class="scrollbutton">Program</button>
+  <button class="scrollbutton">School</button>
 </div>
 ```
 ```javascript
@@ -67,13 +67,13 @@ ___
 
 ```html
 <div class="scroll-right">
-  <a href="/a/"> <button class="scrollbutton">Example</button> </a>
-  <a href="/b/"> <button class="scrollbutton">Political</button> </a>
-  <a href="/c/"> <button class="scrollbutton">App</button> </a>
-  <a href="/d/"> <button class="scrollbutton">Programming</button> </a>
-  <a href="/e/"> <button class="scrollbutton">Feminist</button> </a>
-  <a href="/f/"> <button class="scrollbutton">Program</button> </a>
-  <a href="/g/"> <button class="scrollbutton">School</button> </a>
+  <button name="scrollbtn" class="scrollbutton" onclick="window.location=example.html">Example</button>
+  <button name="scrollbtn" class="scrollbutton" onclick="window.location=political.html">Political</button>
+  <button name="scrollbtn" class="scrollbutton" onclick="window.location=app.html">App</button>
+  <button name="scrollbtn" class="scrollbutton" onclick="window.location=programming.html">Programming</button>
+  <button name="scrollbtn" class="scrollbutton" onclick="window.location=feminist.html">Feminist</button>
+  <button name="scrollbtn" class="scrollbutton" onclick="window.location=program.html">Program</button>
+  <button name="scrollbtn" class="scrollbutton" onclick="window.location=school.html">School</button>
 </div>
 ```
 ```javascript

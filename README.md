@@ -1,4 +1,5 @@
 # Scroller.js
+## WATCH FOR UPDATES, NEW ALGORITHM COMING SOON WITH WAY BETTER PERFORMANCE 
 Create pausable scrolling text with a simple one-liner<br>
 
 ## Installation

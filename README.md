@@ -35,7 +35,7 @@ div-containing-buttons {
 
 <br>
 
-### Example 1
+### Example 1/2
 
 ```html
 <div id="scrolldiv" class="scroll-left">
@@ -56,7 +56,7 @@ new Scroller('#scrolldiv', { direction: 'left', speed: 10 });
 
 <br>
 
-### Example 2
+### Example 2/2
 
 ```html
 <div class="scroll-right">

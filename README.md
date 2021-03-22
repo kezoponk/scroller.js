@@ -35,7 +35,7 @@ div-containing-buttons {
 
 <br>
 
-### Example
+### Example 1
 
 ```html
 <div id="scrolldiv" class="scroll-left">
@@ -54,9 +54,9 @@ new Scroller('#scrolldiv', { direction: 'left', speed: 10 });
 - Scroll to left
 - Moving 1px every 10ms
 
-___
+<br>
 
-### Example #2
+### Example 2
 
 ```html
 <div class="scroll-right">

@@ -1,6 +1,6 @@
 {
   "name": "@kezoponk/scroller",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Create pausable scrolling text with a simple one-liner",
   "main": "dist/scroller.min.js",
   "scripts": {

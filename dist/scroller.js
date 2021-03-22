@@ -1,136 +1,160 @@
 /**
-* @author Albin Eriksson, https://github.com/kezoponk
-* @license MIT, https://opensource.org/licenses/MIT
-*/
-class Scroller {
-  leftCycle(scrollBtn, tickSpeed) {
-    this.btnIndex = 0;
-    while(this.btnIndex < this.btnLength && !this.paused) {
-      // Create new position of current button
-      this.newBtnPos = scrollBtn[this.btnIndex].offsetLeft - 1,
-      this.resetCondition = 0 - scrollBtn[this.btnIndex].offsetWidth;
+ * @author Albin Eriksson, https://github.com/kezoponk
+ * @license MIT, https://opensource.org/licenses/MIT
+ */
+ class Scroller {
+  leftCycle(scrollingButtons) {
+    // If the button most to left is outside of view then put it in the back of line
+    if (0 - (scrollingButtons[this.btnIndex].offsetWidth + this.virtualLeft) >= this.movingpart.offsetLeft) {
+      scrollingButtons[this.btnIndex].style.left = this.newBtnPos + this.virtualLeft + 'px';
+      this.virtualLeft += scrollingButtons[this.btnIndex].offsetWidth;
 
-      // If previous button position is (left = 0 - buttonwidth) = past visible end of div, then move to back of the line
-      if(this.newBtnPos <= this.resetCondition) {
-        // startBtnPos = lastbuttons left + width
-        let startBtnPos = scrollBtn[this.lastBtnIndex].offsetLeft+scrollBtn[this.lastBtnIndex].offsetWidth - 1;
-        scrollBtn[this.btnIndex].style.left = startBtnPos+'px';
-        scrollBtn[this.btnIndex].style.transition = 'left '+tickSpeed+'ms linear';
-        this.lastBtnIndex = this.btnIndex;
+      if (this.btnIndex != 0) {
+        this.btnIndex--;
       } else {
-        // If not, move left
-        scrollBtn[this.btnIndex].style.left = this.newBtnPos+'px';
-        scrollBtn[this.btnIndex].style.transition = 'left '+tickSpeed+'ms linear';
+        // Reset cycle
+        let btnStartPos = 0;
+        for (let index = scrollingButtons.length - 1; index >= 0; index--) {
+          scrollingButtons[index].style.left = btnStartPos + 'px';
+          btnStartPos += scrollingButtons[index].offsetWidth;
+        }
+        // Reset values to the same value as they were before the cycle began
+        this.virtualLeft = 0,
+          this.btnIndex = this.btnCount - 1,
+          this.newBtnPos = this.btnTotalWidth,
+          this.movingpart.style.left = '0px';
       }
-      this.btnIndex++;
     }
+    this.movingpart.style.left = this.movingpart.offsetLeft - 1 + 'px';
   }
 
-  rightCycle(scrollBtn, tickSpeed) {
-    this.btnIndex = 0;
-    while(this.btnIndex < this.btnLength && !this.paused) {
-      // Create new position of current button
-      this.newBtnPos = scrollBtn[this.btnIndex].offsetLeft + 1;
-      this.resetCondition = scrollBtn[this.lastBtnIndex].offsetLeft;
+  rightCycle(scrollingButtons) {
+    // If the button most to left is outside of view then put it in the back of line
+    if (this.virtualLeft + scrollingButtons[this.btnIndex].offsetWidth <= this.movingpart.offsetLeft) {
+      this.newBtnPos -= scrollingButtons[this.btnIndex].offsetWidth;
+      scrollingButtons[this.btnIndex].style.left = this.newBtnPos + 'px';
+      this.virtualLeft += scrollingButtons[this.btnIndex].offsetWidth;
 
-      // If previous button position is (left = 0), then move current btn to beginning
-      if(this.resetCondition == 0) {
-        // startBtnPos = lastbuttons 1 - width, 1 instead of 0 to fill gap of 1px created at first iteration
-        let startBtnPos = 1 - scrollBtn[this.btnIndex].offsetWidth;
-        scrollBtn[this.btnIndex].style.left = startBtnPos+'px';
-        scrollBtn[this.btnIndex].style.transition = 'left '+tickSpeed+'ms linear';
-        this.lastBtnIndex = this.btnIndex;
+      if (this.btnIndex != this.btnCount - 1) {
+        this.btnIndex++;
       } else {
-        // If not, move right
-        scrollBtn[this.btnIndex].style.left = this.newBtnPos+'px';
-        scrollBtn[this.btnIndex].style.transition = 'left '+tickSpeed+'ms linear';
+        // Reset cycle
+        let btnStartPos = 0;
+        for (let index = scrollingButtons.length - 1; index >= 0; index--) {
+          scrollingButtons[index].style.left = btnStartPos + 'px';
+          btnStartPos += scrollingButtons[index].offsetWidth;
+        }
+        // Reset values to the same value as they were before the cycle began
+        this.btnIndex = 0,
+          this.newBtnPos = 0,
+          this.virtualLeft = this.parentDiv.offsetWidth - this.btnTotalWidth,
+          this.movingpart.style.left = this.virtualLeft + 'px';
       }
-      this.btnIndex++;
     }
+    this.movingpart.style.left = this.movingpart.offsetLeft + 1 + 'px';
   }
 
-  calculatePositions(scrollBtn, parentDiv, options, initButtonQuantity, btnTotalWidth, largestBtn) {
+  calculatePositions(scrollingButtons, options, initButtonQuantity, btnTotalWidth, largestBtn) {
     // Remove previous supplemental buttons if window size is changed
-    for(var i = scrollBtn.length-1; i >= initButtonQuantity; i--) {
-      scrollBtn[i].parentNode.removeChild(scrollBtn[i]);
+    for (let index = scrollingButtons.length - 1; index >= initButtonQuantity; index--) {
+      scrollingButtons[index].parentNode.removeChild(scrollingButtons[index]);
     }
     // If the total width of all buttons in div is less then div width then append buttons until div is filled
     let index = 0;
-    while(btnTotalWidth < parentDiv.offsetWidth+largestBtn) {
-      var clone = scrollBtn[index].cloneNode(true);
-      parentDiv.appendChild(clone);
-      btnTotalWidth += scrollBtn[index].offsetWidth;
+    while (btnTotalWidth <= this.parentDiv.offsetWidth + largestBtn) {
+      var clone = scrollingButtons[index].cloneNode(true);
+      this.movingpart.appendChild(clone);
+      btnTotalWidth += scrollingButtons[index].offsetWidth;
       index++;
     }
     // Create buttons start positions
     let btnStartPos = 0;
-    for(index = scrollBtn.length-1; index >= 0; index--) {
-      scrollBtn[index].style.left = btnStartPos+'px';
-      btnStartPos += scrollBtn[index].offsetWidth;
+    for (let index = scrollingButtons.length - 1; index >= 0; index--) {
+      scrollingButtons[index].style.left = btnStartPos + 'px';
+      btnStartPos += scrollingButtons[index].offsetWidth;
     }
-    // If direction is left then lastBtnIndex should begin at first btn, if right then iteration begin at the last btn
-    if(options.direction == 'left') this.lastBtnIndex = 0; else this.lastBtnIndex = scrollBtn.length-1;
+    // Create/Reset variables
+    this.btnCount = scrollingButtons.length;
+    this.btnTotalWidth = btnTotalWidth;
 
-    // Update the private variable "btnLength" with button quantity
-    this.btnLength = scrollBtn.length;
+    if (options.direction == 'left') {
+      this.btnIndex = this.btnCount - 1,
+        this.newBtnPos = btnTotalWidth,
+        this.virtualLeft = 0;
+    } else if (options.direction == 'right') {
+      this.btnIndex = 0,
+        this.newBtnPos = 0, //px
+        this.virtualLeft = this.parentDiv.offsetWidth - btnTotalWidth,
+        this.movingpart.style.left = this.virtualLeft + 'px';
+    } else {
+      throw new Error('Direction is undefined or incorrect');
+    }
   }
 
   /**
-  * @param {string} parentIdentifier - id or class of div containing scrolling buttons
-  * @param {Object} options = { speed, performance, direction }
-  */
+   * @param {string} parentIdentifier - id or class of div containing scrolling buttons
+   * @param {Object} options { speed, direction }
+   */
   constructor(parentIdentifier, options) {
-    // Get all buttons in an array since childbtn is the name attribute
-    const parentDiv = document.querySelector(parentIdentifier);
-    const scrollBtns = parentDiv.children;
-    const initButtonQuantity = scrollBtns.length;
-    this.paused = false;
+    this.parentDiv = document.querySelector(parentIdentifier);
+    this.parentDiv.style.overflow = 'hidden';
+
+    // Move buttons from parent div to the moving part & make position absolute
+    this.movingpart = document.createElement('div');
+    this.movingpart.style.position = 'absolute';
+    for (index = this.parentDiv.children.length; index >= 1; index--) {
+      this.parentDiv.children[index - 1].style.position = 'absolute';
+      this.movingpart.appendChild(this.parentDiv.children[index - 1]);
+    }
+    this.parentDiv.appendChild(this.movingpart);
+
+    const scrollingButtons = this.movingpart.children;
+    const initButtonQuantity = scrollingButtons.length;
 
     // Calculate how mutch extra space is needed outside of div (not visible space)
-    let firstLength = 0,
-        largestBtn = 0;
-    for(var index = scrollBtns.length-2; index >= 0; index--) {
-      let currentButtonWidth = scrollBtns[index].offsetWidth;
-      firstLength += currentButtonWidth;
-      if(currentButtonWidth > largestBtn) {
+    let initTotalWidth = 0,
+      largestBtn = 0;
+    for (var index = scrollingButtons.length - 1; index >= 0; index--) {
+      let currentButtonWidth = scrollingButtons[index].offsetWidth;
+      initTotalWidth += currentButtonWidth;
+      if (currentButtonWidth > largestBtn) {
         largestBtn = currentButtonWidth;
       }
     }
-    // If performance is false then timing is transition time
-    let timing = 0;
-    if(!options.performance && options.performance != null) {
-      timing = options.speed;
-    }
     // Calculate positions for all buttons
-    this.calculatePositions(scrollBtns, parentDiv, options, initButtonQuantity, firstLength, largestBtn);
+    this.calculatePositions(scrollingButtons, options, initButtonQuantity, initTotalWidth, largestBtn);
 
     // Re-calculate/reset button positions if window is resized
-    window.addEventListener('resize', function() {
-      this.calculatePositions(scrollBtns, parentDiv, options, initButtonQuantity, firstLength, largestBtn);
+    window.addEventListener('resize', function () {
+      this.calculatePositions(scrollingButtons, options, initButtonQuantity, initTotalWidth, largestBtn);
     }.bind(this));
-    // Pause eventlistener for mouse over and out
-    parentDiv.addEventListener("mouseover", function() { this.paused = true; }.bind(this));
-    parentDiv.addEventListener("mouseout", function() { this.paused = false; }.bind(this));
 
-    // Declaring variables outside of loop for optimization
-    this.btnIndex,
-    this.btnLength,
-    this.newBtnPos,
-    this.resetCondition,
-    this.lastBtnIndex;
+    // Pause eventlistener for mouse over and out
+    this.paused = false;
+    this.parentDiv.addEventListener('mouseover', () => {
+      this.paused = true;
+    });
+    this.parentDiv.addEventListener('mouseout', () => {
+      this.paused = false;
+    });
 
     // Finally begin button movement
-    if(options.direction=='left') {
-      setInterval(function() {
-        this.leftCycle(scrollBtns, timing);
-      }.bind(this), options.speed);
-    }
-    else if(options.direction=='right'){
-      setInterval(function() {
-        this.rightCycle(scrollBtns, timing);
-      }.bind(this), options.speed);
+    if (options.direction == 'left') {
+      setInterval(function () {
+          if (!this.paused) {
+            this.leftCycle(scrollingButtons);
+          }
+        }
+        .bind(this), options.speed);
+    } else if (options.direction == 'right') {
+      setInterval(function () {
+          if (!this.paused) {
+            this.rightCycle(scrollingButtons);
+          }
+        }
+        .bind(this), options.speed);
     }
   }
 }
 
-if (typeof(module) == 'object') module.exports = Scroller;
+if (typeof (module) == 'object') module.exports = Scroller;

@@ -1,5 +1,4 @@
 # Scroller.js
-## WATCH FOR UPDATES, NEW ALGORITHM COMING SOON WITH WAY BETTER PERFORMANCE 
 Create pausable scrolling text with a simple one-liner<br>
 
 ## Installation
@@ -9,7 +8,7 @@ $ npm install @kezoponk/scroller
 ```
 Install via package.json:
 ```json
-"@kezoponk/scroller": "1.0.1" 
+"@kezoponk/scroller": "1.0.*" 
 ```
 Or download the dist/scroller.min.js manually
 ```html
@@ -20,8 +19,7 @@ Or download the dist/scroller.min.js manually
 | Options | Usage |
 | --- | --- |
 | `direction` | left or right |
-| `performance` | true or false <br>True enables transition time on each pixel move. False is default |
-| `speed` | higher = slower |
+| `speed` | higher the value = slower |
 
 <code>
   new Scroller(div-containing-buttons, { <strong>Options</strong> })
@@ -31,18 +29,13 @@ Or download the dist/scroller.min.js manually
 
 ```css
 div-containing-buttons {
-  overflow: hidden;
   position: /* relative or absolute */;
-}
-
-buttons-to-scroll {
-  position: absolute;
 }
 ```
 
 <br>
 
-### Example #1
+### Example
 
 ```html
 <div id="scrolldiv" class="scroll-left">
@@ -59,7 +52,6 @@ buttons-to-scroll {
 new Scroller('#scrolldiv', { direction: 'left', speed: 10 });
 ```
 - Scroll to left
-- Performance better, less smooth animation
 - Moving 1px every 10ms
 
 ___
@@ -78,8 +70,7 @@ ___
 </div>
 ```
 ```javascript
-new Scroller('.scroll-right', { direction: 'right', speed: 100, performance: true });
+new Scroller('.scroll-right', { direction: 'right', speed: 100 });
 ```
 - Scroll to right
-- Multiple scrolls is too demanding
 - Moving 1px every 100ms

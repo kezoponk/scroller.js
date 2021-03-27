@@ -22,7 +22,7 @@ Or download the dist/scroller.min.js manually
 | `speed` | higher the value = slower |
 
 <code>
-  new Scroller(div-containing-buttons, { <strong>Options</strong> })
+  new Scroller('div-containing-buttons', { <strong>Options</strong> })
 </code><br><br>
 
 **Important CSS**

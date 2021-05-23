@@ -8,7 +8,7 @@ $ npm install @kezoponk/scroller
 ```
 Install via package.json:
 ```json
-"@kezoponk/scroller": "1.0.*" 
+"@kezoponk/scroller": "1.0.4" 
 ```
 Or download the dist/scroller.min.js manually
 ```html
@@ -21,17 +21,16 @@ Or download the dist/scroller.min.js manually
 | `direction` | left or right |
 | `speed` | higher the value = slower |
 
-<code>
-  new <strong>Scroller</strong>('div-containing-buttons', { Options})
-  <br> <strong>Or</strong> <br>
-  new <strong>RelativeScroller</strong>('div-containing-buttons', { Options })
-</code><br><br>
+<code>new <strong>Scroller</strong>('div-containing-buttons', { Options})</code>
+<strong> OR </strong>
+<code>new <strong>RelativeScroller</strong>('div-containing-buttons', { Options })</code>
+<br>
 
 **Important CSS**
 
 ```css
 div-containing-buttons {
-  position: /* relative or absolute */;
+  position: relative, absolute or fixed;
 }
 ```
 

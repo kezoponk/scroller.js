@@ -22,7 +22,9 @@ Or download the dist/scroller.min.js manually
 | `speed` | higher the value = slower |
 
 <code>
-  new Scroller('div-containing-buttons', { <strong>Options</strong> })
+  new <strong>Scroller</strong>('div-containing-buttons', { Options})
+  <br> <strong>Or</strong> <br>
+  new <strong>RelativeScroller</strong>('div-containing-buttons', { Options })
 </code><br><br>
 
 **Important CSS**
@@ -35,7 +37,7 @@ div-containing-buttons {
 
 <br>
 
-### Example 1 / 2
+### Example 1 / 3
 
 ```html
 <div id="scrolldiv" class="scroll-left">
@@ -55,18 +57,40 @@ new Scroller('#scrolldiv', { direction: 'left', speed: 10 });
 - Moving 1px every 10ms
 
 <br>
+    
+### Example 2 / 3
 
-### Example 2 / 2
+```html
+<div class="scroll-right" style="display:flex; flex-direction:column; max-height:100px">
+  <a href="/example"><button style="height:50px">Example</button></a>
+  <a href="/political"><button style="height:30px">Political</button></a>
+  <a href="/app"><button style="height:30px">App</button></a>
+  <a href="/programming"><button style="height:30px">Programming</button></a>
+  <a href="/feminist"><button style="height:30px">Feminist</button></a>
+  <a href="/program"><button style="height:30px">Program</button></a>
+  <a href="/school"><button style="height:30px">School</button></a>
+</div>
+```
+```javascript
+new RelativeScroller('.scroll-right', { direction: 'right', speed: 100 });
+```
+- Scroll to right
+- Moving 1px every 100ms
+- Div is 50px height
+
+<br>
+
+### Example 3 / 3
 
 ```html
 <div class="scroll-right">
-  <button name="scrollbtn" class="scrollbutton" onclick="window.location=example.html">Example</button>
-  <button name="scrollbtn" class="scrollbutton" onclick="window.location=political.html">Political</button>
-  <button name="scrollbtn" class="scrollbutton" onclick="window.location=app.html">App</button>
-  <button name="scrollbtn" class="scrollbutton" onclick="window.location=programming.html">Programming</button>
-  <button name="scrollbtn" class="scrollbutton" onclick="window.location=feminist.html">Feminist</button>
-  <button name="scrollbtn" class="scrollbutton" onclick="window.location=program.html">Program</button>
-  <button name="scrollbtn" class="scrollbutton" onclick="window.location=school.html">School</button>
+  <button onclick="window.location=example.html">Example</button>
+  <button onclick="window.location=political.html">Political</button>
+  <button onclick="window.location=app.html">App</button>
+  <button onclick="window.location=programming.html">Programming</button>
+  <button onclick="window.location=feminist.html">Feminist</button>
+  <button onclick="window.location=program.html">Program</button>
+  <button onclick="window.location=school.html">School</button>
 </div>
 ```
 ```javascript

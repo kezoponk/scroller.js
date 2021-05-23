@@ -34,6 +34,7 @@ div-containing-buttons {
 }
 ```
 
+
 <br>
 
 ### Example 1 / 3
@@ -60,18 +61,18 @@ new Scroller('#scrolldiv', { direction: 'left', speed: 10 });
 ### Example 2 / 3
 
 ```html
-<div class="scroll-right" style="display:flex; flex-direction:column; max-height:100px">
-  <a href="/example"><button style="height:50px">Example</button></a>
-  <a href="/political"><button style="height:30px">Political</button></a>
-  <a href="/app"><button style="height:30px">App</button></a>
-  <a href="/programming"><button style="height:30px">Programming</button></a>
-  <a href="/feminist"><button style="height:30px">Feminist</button></a>
-  <a href="/program"><button style="height:30px">Program</button></a>
-  <a href="/school"><button style="height:30px">School</button></a>
+<div id="dynamic-height" style="display:flex; flex-direction:column; max-height:100px">
+  <a href="/example"><button style="min-height:50px">Example</button></a>
+  <a href="/political"><button style="min-height:30px">Political</button></a>
+  <a href="/app"><button style="min-height:30px">App</button></a>
+  <a href="/programming"><button style="min-height:30px">Programming</button></a>
+  <a href="/feminist"><button style="min-height:30px">Feminist</button></a>
+  <a href="/program"><button style="min-height:30px">Program</button></a>
+  <a href="/school"><button style="min-height:30px">School</button></a>
 </div>
 ```
 ```javascript
-new RelativeScroller('.scroll-right', { direction: 'right', speed: 100 });
+new RelativeScroller('#dynamic-height', { direction: 'right', speed: 100 });
 ```
 - Scroll to right
 - Moving 1px every 100ms

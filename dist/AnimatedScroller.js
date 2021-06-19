@@ -127,4 +127,4 @@ class AnimatedScroller {
     }
 }
 
-module.exports = AnimatedScroller;
+if (typeof(module) == 'object') module.exports = AnimatedScroller;

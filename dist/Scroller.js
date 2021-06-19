@@ -116,4 +116,4 @@ const ResizeSensor = require("css-element-queries/src/ResizeSensor");
   }
 }
 
-module.exports = Scroller;
+if (typeof(module) == 'object') module.exports = Scroller;

@@ -8,22 +8,26 @@ $ npm install @kezoponk/scroller
 ```
 Install via package.json:
 ```json
-"@kezoponk/scroller": "1.0.4" 
+"@kezoponk/scroller": "1.0.6" 
 ```
-Or download the dist/scroller.min.js manually
+Or download Scroller.min.js or AnimatedScroller.min.js from dist/
 ```html
-<script type="text/javascript" src="scroller.min.js"></script>
+<script type="text/javascript" src="Scroller.min.js"></script>
 ```
+<br>
 
 ## Usage
 | Options | Usage |
 | --- | --- |
-| `direction` | left or right |
-| `speed` | higher the value = slower |
+| `direction` | Left or right |
+| `speed` | Turtle: 20 - Rabbit: 120 |
+| `animation`<br/>&nbsp;**AnimatedScroller** | Animation type, works with cubic-bezier<br>Default: ease-in-out |
+| `delay`<br/>&nbsp;**AnimatedScroller** | Delay before starting next animation when last animation is finished |
+| `finishAnimationBeforePause`<br/>&nbsp;**AnimatedScroller** | Default: false |
 
 <code>new <strong>Scroller</strong>('div-containing-buttons', { Options})</code>
 <strong> OR </strong>
-<code>new <strong>RelativeScroller</strong>('div-containing-buttons', { Options })</code>
+<code>new <strong>AnimatedScroller</strong>('div-containing-buttons', { Options })</code>
 <br>
 
 **Important CSS**
@@ -61,7 +65,7 @@ new Scroller('#scrolldiv', { direction: 'left', speed: 10 });
 ### Example 2 / 3
 
 ```html
-<div id="dynamic-height" style="display:flex; flex-direction:column; max-height:100px">
+<div id="animated" style="display:flex; flex-direction:column; max-height:100px">
   <a href="/example"><button style="min-height:50px">Example</button></a>
   <a href="/political"><button style="min-height:30px">Political</button></a>
   <a href="/app"><button style="min-height:30px">App</button></a>
@@ -72,11 +76,13 @@ new Scroller('#scrolldiv', { direction: 'left', speed: 10 });
 </div>
 ```
 ```javascript
-new RelativeScroller('#dynamic-height', { direction: 'right', speed: 100 });
+new AnimatedScroller('#animated', { direction: 'right', speed: 100, animation:'linear', delay: 500 });
 ```
 - Scroll to right
 - Moving 1px every 100ms
 - Div is 50px height
+- Ease-in-out animation on each item
+- 0.5s delay between each iteration
 
 <br>
 

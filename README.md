@@ -31,15 +31,6 @@ Or download Scroller.min.js or AnimatedScroller.min.js from dist/
 * unpause()<br>
 * restore()<br>
 
-**Important CSS**
-
-```css
-div-containing-buttons {
-  position: relative, absolute or fixed;
-}
-```
-
-
 <br>
 
 ### Example 1 / 3

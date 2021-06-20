@@ -25,10 +25,11 @@ Or download Scroller.min.js or AnimatedScroller.min.js from dist/
 | `delay`<br/>&nbsp;**AnimatedScroller** | Delay before starting next animation when last animation is finished |
 | `finishAnimationBeforePause`<br/>&nbsp;**AnimatedScroller** | Default: false |
 
-<code>new <strong>Scroller</strong>('div-containing-buttons', { Options})</code>
-<strong> OR </strong>
-<code>new <strong>AnimatedScroller</strong>('div-containing-buttons', { Options })</code>
-<br>
+<code>new Scroller <strong>OR</strong> AnimatedScroller('div-containing-buttons', { Options})</code>
+### Methods
+* pause()<br>
+* unpause()<br>
+* restore()<br>
 
 **Important CSS**
 

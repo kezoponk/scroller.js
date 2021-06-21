@@ -1,5 +1,5 @@
 # Scroller.js
-Create pausable scrolling text with a simple one-liner<br>
+Create responsive, pausable moving elements, left or right, with a simple one-liner<br>
 
 ## Installation
 Install from the command line:
@@ -26,10 +26,15 @@ Or download Scroller.min.js or AnimatedScroller.min.js from dist/
 | `finishAnimationBeforePause`<br/>&nbsp;**AnimatedScroller** | Default: false |
 
 <code>new Scroller <strong>OR</strong> AnimatedScroller('div-containing-buttons', { Options})</code>
-### Methods
-* pause()<br>
-* unpause()<br>
-* restore()<br>
+
+## Methods
+These are available for access on the scroller instance <br>
+* **pause()** <br>
+Also triggered once the scroller enters the target div <br>
+* **unpause()** <br>
+Also triggered once the scroller exit the target div <br>
+* **restore()** <br>
+Restore target div to state before implementing scroller
 
 <br>
 

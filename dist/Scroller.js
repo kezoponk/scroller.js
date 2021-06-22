@@ -1,4 +1,4 @@
-const ResizeSensor = require("css-element-queries/src/ResizeSensor");
+if (typeof(require) == 'function') var ResizeSensor = require("css-element-queries/src/ResizeSensor");
 /**
  * @author Albin Eriksson https://github.com/kezoponk
  * @license MIT https://opensource.org/licenses/MIT
@@ -31,7 +31,7 @@ const ResizeSensor = require("css-element-queries/src/ResizeSensor");
   }
 
   unpause() {
-    this.loop = setInterval((this.options.direction == 'left') ? () => this.leftCycle() : () => this.rightCycle(), 1000 / Math.ceil(this.options.speed));
+    this.loop = setInterval((this.options.direction == 'left') ? () => this.leftCycle() : () => this.rightCycle(), 1000 / this.options.speed);
   }
 
   /** Restore target div to state before scroller implementation */
@@ -66,7 +66,7 @@ const ResizeSensor = require("css-element-queries/src/ResizeSensor");
     } else if(this.options.direction == 'right') {
         this.movingpart.style.left = 0 - this.Items[0].offsetWidth+'px';
     } else {
-      throw new Error('Direction is undefined or invalid');
+      throw new Error('direction is undefined or invalid');
     }
   }
 
@@ -77,6 +77,12 @@ const ResizeSensor = require("css-element-queries/src/ResizeSensor");
   constructor(parentIdentifier, options) {
     this.parentDiv = document.querySelector(parentIdentifier);
     this.parentDiv.style.overflow = 'hidden';
+    
+    try {
+      options.speed = options.speed ? options.speed.toFixed(0) : (() => {throw new Error('speed is undefined')});
+    } catch (e) {
+      if (e instanceof TypeError) throw new TypeError('speed is invalid');
+    }
     this.options = options;
 
     // Move items from target/parent div to initialMovingPart & calculate how many items is required to fill parent div width
@@ -111,7 +117,7 @@ const ResizeSensor = require("css-element-queries/src/ResizeSensor");
     });
 
     // Finally begin movement
-    this.loop = setInterval((this.options.direction == 'left') ? () => this.leftCycle() : () => this.rightCycle(), 1000 / Math.ceil(this.options.speed));
+    this.loop = setInterval((this.options.direction == 'left') ? () => this.leftCycle() : () => this.rightCycle(), 1000 / this.options.speed);
   }
 }
 

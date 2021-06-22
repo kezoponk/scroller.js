@@ -8,11 +8,13 @@ $ npm install @kezoponk/scroller
 ```
 Install via package.json:
 ```json
-"@kezoponk/scroller": "1.0.8" 
+"@kezoponk/scroller": "1.0.9" 
 ```
-Or download Scroller.min.js or AnimatedScroller.min.js from dist/
+Or download Scroller.min.js or AnimatedScroller.min.js from dist/ <br>
+**AND** the dependency <a href="https://github.com/marcj/css-element-queries/releases"> css-element-queries.zip => ResizeSensor.js </a>
 ```html
-<script type="text/javascript" src="Scroller.min.js"></script>
+<script src="css-element-queries/src/ResizeSensor.js"></script>
+<script src="Scroller.min.js"></script>
 ```
 <br>
 
@@ -22,10 +24,10 @@ Or download Scroller.min.js or AnimatedScroller.min.js from dist/
 | `direction` | Left or right |
 | `speed` | Turtle: 20 - Rabbit: 120 |
 | `animation`<br/>&nbsp;**AnimatedScroller** | Animation type, works with cubic-bezier<br>Default: ease-in-out |
-| `delay`<br/>&nbsp;**AnimatedScroller** | Delay before starting next animation when last animation is finished |
+| `delay`<br/>&nbsp;**AnimatedScroller** | Delay before starting next animation when last animation is finished<br>Default: 0 |
 | `finishAnimationBeforePause`<br/>&nbsp;**AnimatedScroller** | Default: false |
 
-<code>new Scroller <strong>OR</strong> AnimatedScroller('div-containing-buttons', { Options})</code>
+<code>new Scroller <strong>OR</strong> AnimatedScroller('div-containing-buttons', { Options })</code>
 
 ## Methods
 These are available for access on the scroller instance <br>

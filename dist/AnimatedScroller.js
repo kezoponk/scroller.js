@@ -1,4 +1,4 @@
-const ResizeSensor = require("css-element-queries/src/ResizeSensor");
+if (typeof(require) == 'function') var ResizeSensor = require("css-element-queries/src/ResizeSensor");
 /**
  * @author Albin Eriksson https://github.com/kezoponk
  * @license MIT https://opensource.org/licenses/MIT
@@ -83,8 +83,7 @@ class AnimatedScroller {
      */
     constructor(parentIdentifier, options) {
       options.animation = options.animation ? options.animation : 'ease-in-out';
-      options.delay = options.delay ? Math.ceil(options.delay) : 0;
-      options.speed = options.speed ? Math.ceil(options.speed) : 50;
+      options.delay = options.delay ? options.delay : 0;
       this.options = options;
   
       this.parentDiv = document.querySelector(parentIdentifier);

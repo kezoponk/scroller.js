@@ -1,7 +1,7 @@
 {
   "name": "@kezoponk/scroller",
-  "version": "1.0.7",
-  "description": "Create pausable scrolling text with a simple one-liner",
+  "version": "1.0.8",
+  "description": "Create responsive, pausable moving elements, left or right, with a simple one-liner",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,7 +19,8 @@
     "javascript-library",
     "moving-text",
     "trainstation",
-    "trainstation-text"
+    "trainstation-text",
+    "threadmill"
   ],
   "author": "Albin Eriksson",
   "license": "MIT",

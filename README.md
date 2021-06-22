@@ -8,7 +8,7 @@ $ npm install @kezoponk/scroller
 ```
 Install via package.json:
 ```json
-"@kezoponk/scroller": "1.0.7" 
+"@kezoponk/scroller": "1.0.8" 
 ```
 Or download Scroller.min.js or AnimatedScroller.min.js from dist/
 ```html

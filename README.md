@@ -11,7 +11,7 @@ Install via package.json:
 "@kezoponk/scroller": "1.0.9" 
 ```
 Or download Scroller.min.js or AnimatedScroller.min.js from dist/ <br>
-**AND** the dependency <a href="https://github.com/marcj/css-element-queries/releases"> css-element-queries.zip => ResizeSensor.js </a>
+**AND** the dependency <a href="https://github.com/marcj/css-element-queries/releases"> css-element-queries.zip -> ResizeSensor.js </a>
 ```html
 <script src="css-element-queries/src/ResizeSensor.js"></script>
 <script src="Scroller.min.js"></script>

@@ -1,5 +1,4 @@
 const ResizeSensor = require("css-element-queries/src/ResizeSensor");
-
 /**
  * @author Albin Eriksson https://github.com/kezoponk
  * @license MIT https://opensource.org/licenses/MIT

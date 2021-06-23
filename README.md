@@ -27,7 +27,9 @@ Or download Scroller.min.js or AnimatedScroller.min.js from dist/ <br>
 | `delay`<br/>&nbsp;**AnimatedScroller** | Delay before starting next animation when last animation is finished<br>Default: 0 |
 | `finishAnimationBeforePause`<br/>&nbsp;**AnimatedScroller** | Default: false |
 
-<code>new Scroller <strong>OR</strong> AnimatedScroller('div-containing-buttons', { Options })</code>
+<code>new Scroller <strong>OR</strong> AnimatedScroller('div-containing-items', { Options })</code>
+
+**Keep in mind** eventlisteners to items in target div will get removed since cloneNode ignores them
 
 ## Methods
 These are available for access on the scroller instance <br>

@@ -18,7 +18,7 @@ class AnimatedScroller {
       this.movingpart.style.transition = `left ${animationDuration}ms ${this.options.animation}`;
 
       // When transition/animation is finished, move item to the end of the line & reset animation
-      this.resetAnimationTimeout = setTimeout(() => {
+      this.nextAnimationReset = setTimeout(() => {
         if(this.options.direction == 'left') {
           const itemOutsideView = this.Items[0];
           this.movingpart.appendChild(itemOutsideView.cloneNode(true));
@@ -33,7 +33,7 @@ class AnimatedScroller {
     }
     
     pause() {
-      clearTimeout(this.resetAnimationTimeout);
+      clearTimeout(this.nextAnimationReset);
       if (!this.options.finishAnimationBeforePause) {
         this.movingpart.style.left = this.movingpart.offsetLeft +'px';
         this.movingpart.style.transition = 'none';

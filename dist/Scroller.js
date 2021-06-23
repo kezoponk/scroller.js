@@ -16,7 +16,6 @@ if (typeof(require) == 'function') var ResizeSensor = require("css-element-queri
   }
 
   rightCycle() {
-    // If the item most to left is outside of view then put it in the back of line
     if (this.movingpart.offsetLeft == 0) {
       const itemOutsideView = this.Items[this.Items.length -1];
       this.movingpart.prepend(itemOutsideView.cloneNode(true));
@@ -66,22 +65,22 @@ if (typeof(require) == 'function') var ResizeSensor = require("css-element-queri
     } else if(this.options.direction == 'right') {
         this.movingpart.style.left = 0 - this.Items[0].offsetWidth+'px';
     } else {
-      throw new Error('direction is undefined or invalid');
+      throw new Error('Missing or invalid argument direction');
     }
   }
-
+  
   /**
    * @param {string} parentIdentifier - id or class of div containing elements you want to scroll
-   * @param {Object} options { speed, direction }
+   * @param {Object} options - { speed, direction }
    */
   constructor(parentIdentifier, options) {
     this.parentDiv = document.querySelector(parentIdentifier);
     this.parentDiv.style.overflow = 'hidden';
-    
+
     try {
-      options.speed = options.speed ? options.speed.toFixed(0) : (() => {throw new Error('speed is undefined')});
+      options.speed = options.speed.toFixed(0);
     } catch (e) {
-      if (e instanceof TypeError) throw new TypeError('speed is invalid');
+      if (e instanceof TypeError) throw new TypeError('Missing or invalid argument speed');
     }
     this.options = options;
 

@@ -20,7 +20,7 @@ class AnimatedScroller {
 		this.makeAnimation();
 	}
 
-	makeAnimation( start = this.options.direction === 'left' ? 0 : 0 - this.Items[0].offsetWidth ) {
+	makeAnimation (start = this.options.direction === 'left' ? 0 : 0 - this.Items[0].offsetWidth) {
 		
 		// Same as start but reversed
 		const end = this.options.direction === 'left' ? 0 - this.Items[0].offsetWidth : 0;

@@ -4,11 +4,11 @@
  */
 
 interface Options { 
-    speed: number, 
-    direction: 'left' | 'right', 
-    animation: string, 
-    delayBetweenAnimationsMS: number, 
-    finishAnimationBeforePause: boolean 
+  speed: number, 
+  direction: 'left' | 'right', 
+  animation: string, 
+  delayBetweenAnimationsMS: number, 
+  finishAnimationBeforePause: boolean 
 }
 
 class Scroller {

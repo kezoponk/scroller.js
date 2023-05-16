@@ -11,10 +11,6 @@ Install via package.json:
 ```json
 "@kezoponk/scroller": "1.1.2" 
 ```
-Or download dist/scroller.min.js
-```html
-<script src="scroller.min.js"></script>
-```
 <br/>
 
 ## Usage

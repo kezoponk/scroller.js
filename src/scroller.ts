@@ -147,7 +147,7 @@ class Scroller {
       direction: 'left',
       animation: 'linear',
       delayBetweenAnimationsMS: 0,
-      speed: 10,
+      speed: 20,
       finishAnimationBeforePause: false,
       ...options
     }

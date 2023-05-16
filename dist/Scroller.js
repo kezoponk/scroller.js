@@ -1,150 +1,133 @@
-if (typeof(require) === 'function') var ResizeSensor = require("css-element-queries/src/ResizeSensor");
-
 /**
  * @author Albin Eriksson https://github.com/kezoponk
  * @license MIT https://opensource.org/licenses/MIT
  */
- class Scroller {
-  /* If the item most to left is outside of view then put it in the back of line */
-  leftCycle() {
-    if (this.Items[0].offsetWidth + this.movingpart.offsetLeft === 0) {
-      const itemOutsideView = this.Items[0];
-
-      this.movingpart.appendChild(itemOutsideView.cloneNode(true));
-      this.movingpart.removeChild(itemOutsideView);
-
-      this.movingpart.style.left = '0px';
+class Scroller {
+    resetAnimation() {
+        if (!this.movingPart) {
+            return;
+        }
+        const { children: movingPartChildren } = this.movingPart;
+        if (this.options.direction === 'left') {
+            const elementOutsideView = movingPartChildren[0];
+            this.movingPart.appendChild(elementOutsideView.cloneNode(true));
+            this.movingPart.removeChild(elementOutsideView);
+        }
+        else {
+            const elementOutsideView = movingPartChildren[movingPartChildren.length - 1];
+            this.movingPart.prepend(elementOutsideView.cloneNode(true));
+            this.movingPart.removeChild(elementOutsideView);
+        }
+        this.makeAnimation();
     }
-    this.movingpart.style.left = this.movingpart.offsetLeft - 1 +'px';
-  }
-
-  /* If movingpart left isn't negative, make movingpart.left = the width of next item and make it negative, 
-   * and put that item in the beginning - making the movingpart position change invisible to the user */
-  rightCycle() {
-    if (this.movingpart.offsetLeft === 0) {
-      const itemOutsideView = this.Items[this.Items.length -1];
-
-      this.movingpart.prepend(itemOutsideView.cloneNode(true));
-      this.movingpart.removeChild(itemOutsideView);
-
-      this.movingpart.style.left = 0 - this.Items[0].offsetWidth +'px';
+    makeAnimation(startValue) {
+        if (!this.movingPart) {
+            return;
+        }
+        const { offsetWidth: firstElementWidth } = this.movingPart.children[0];
+        const startPx = startValue !== null && startValue !== void 0 ? startValue : (this.options.direction === 'left' ? 0 : 0 - firstElementWidth);
+        const endPx = this.options.direction === 'left' ? 0 - firstElementWidth : 0;
+        this.movingPart.style.left = `${startPx}px`;
+        this.movingPart.style.transition = 'none';
+        const animationDuration = 1000 * Math.abs(endPx - startPx) / this.options.speed;
+        this.callAfterDomUpdate(() => {
+            if (!this.movingPart) {
+                return;
+            }
+            this.movingPart.style.left = `${endPx}px`;
+            this.movingPart.style.transition = `left ${animationDuration}ms ${this.options.animation}`;
+            // When animation is finished: move element to the end of the line (which end depends on direction) & reset animation
+            this.nextAnimationResetTimeout = window.setTimeout(() => this.resetAnimation(), animationDuration + this.options.delayBetweenAnimationsMS);
+        });
     }
-    this.movingpart.style.left = this.movingpart.offsetLeft + 1 +'px';
-  }
-
-  pause() {
-    clearInterval(this.loop);
-  }
-
-  unpause() {
-    this.loop = setInterval(this.options.direction === 'left'
-                            ? () => this.leftCycle() 
-                            : () => this.rightCycle()
-                            , 1000 / this.options.speed);
-  }
-
-  /** Restore target div to state before scroller implementation */
-  restore() {
-    clearInterval(this.loop);
-    
-    this.parentDiv.removeChild(this.movingpart);
-    
-    Object.entries(this.initialMovingPart.children).forEach(([index, item]) => this.parentDiv.appendChild(item));
-
-    this.resizesensor.detach();
-  }
-  
-  initialize(itemsTotalWidth, largestItem) {
-    // Reset movingpart to remove supplemental buttons
-    if (typeof this.movingpart !== 'undefined') this.parentDiv.removeChild(this.movingpart);
-    
-    this.movingpart = this.initialMovingPart.cloneNode(true);
-    this.parentDiv.appendChild(this.movingpart);
-    
-    this.Items = this.movingpart.children;
-
-    if (this.Items.length === 0) throw new Error('Target div empty');
-    
-    /* If the total width of all items in movingpart div is less than
-     * parent div then append clones of items until div is filled */
-    var index = 0;
-    while (itemsTotalWidth <= this.parentDiv.offsetWidth + largestItem) {
-      const clone = this.Items[index].cloneNode(true);
-
-      this.movingpart.appendChild(clone);
-      itemsTotalWidth += this.Items[index].offsetWidth;
-      
-      index++;
+    pause() {
+        clearTimeout(this.nextAnimationResetTimeout);
+        if (!this.options.finishAnimationBeforePause && this.movingPart) {
+            this.movingPart.style.left = `${this.movingPart.offsetLeft}px`;
+            this.movingPart.style.transition = 'none';
+        }
     }
-
-    this.movingpart.style.width = itemsTotalWidth +'px';
-
-    if (this.options.direction === 'left') {
-        this.movingpart.style.left = '0px';
-
-    } else if(this.options.direction === 'right') {
-        this.movingpart.style.left = 0 - this.Items[0].offsetWidth+'px';
-
-    } else {
-      throw new Error('Missing or invalid argument direction');
+    unpause() {
+        var _a;
+        const startPx = (_a = this.movingPart) === null || _a === void 0 ? void 0 : _a.offsetLeft;
+        this.makeAnimation(startPx);
     }
-  }
-  
-  /**
-   * @param {string} parentIdentifier - id or class of div containing elements you want to scroll
-   * @param {Object} options - { speed, direction }
-   */
-  constructor(parentIdentifier, options) {
-    this.parentDiv = document.querySelector(parentIdentifier);
-    this.parentDiv.style.overflow = 'hidden';
-
-    try {
-      options.speed = options.speed.toFixed(0);
-    } catch (e) {
-      if (e instanceof TypeError) throw new TypeError('Missing or invalid argument speed');
+    /**
+     * Restore target element to state before scroller
+     * Can't be started again once restored without creating a new instance
+     */
+    restore() {
+        clearTimeout(this.nextAnimationResetTimeout);
+        this.targetResizeObserver.disconnect();
+        Object.values(this.initialMovingPart.children).forEach((item) => this.targetElement.appendChild(item));
+        if (this.movingPart) {
+            this.targetElement.removeChild(this.movingPart);
+        }
     }
-    this.options = options;
-
-    // Move items from target/parent div to initialMovingPart & calculate how many items is required to fill parent div width
-    this.initialMovingPart = document.createElement('div');
-    this.initialMovingPart.style.position = 'relative';
-
-    let initialTotalWidth = 0, largestItem = 0;
-    Object.entries(this.parentDiv.children).forEach(([index, item]) => {
-      item.style.position = 'relative';
-
-      const currentItemWidth = item.offsetWidth;
-      initialTotalWidth += currentItemWidth;
-
-      if (currentItemWidth > largestItem) {
-        largestItem = currentItemWidth;
-      }
-      
-      this.initialMovingPart.appendChild(item);
-    });
-
-    // Finish calculating width required, add/remove items to fill parent div width
-    this.initialize(initialTotalWidth, largestItem);
-    
-    // Redo when div size is changed
-    this.resizesensor = new ResizeSensor(this.parentDiv, () => {
-      this.initialize(initialTotalWidth, largestItem);
-    });
-
-    // Pause movement when mouse is over
-    this.parentDiv.addEventListener('mouseover', () => {
-      this.pause();
-    });
-    this.parentDiv.addEventListener('mouseleave', () => {
-      this.unpause();
-    });
-
-    // Finally begin movement
-    this.loop = setInterval(this.options.direction === 'left'
-                            ? () => this.leftCycle() 
-                            : () => this.rightCycle()
-                            , 1000 / this.options.speed);
-  }
+    init(initialTotalWidthPx, largestElementPx) {
+        if (this.movingPart) {
+            clearTimeout(this.nextAnimationResetTimeout);
+            this.targetElement.removeChild(this.movingPart);
+        }
+        this.movingPart = this.initialMovingPart.cloneNode(true);
+        this.movingPart.style.cssText = 'left:unset;transition:none;position:relative;white-space:nowrap';
+        this.targetElement.appendChild(this.movingPart);
+        /**
+         * If the total width of all items in movingPart div is less than parent div
+         * then append clones of items until div is filled
+         */
+        let elementsTotalWidthPx = initialTotalWidthPx;
+        for (let index = 0; elementsTotalWidthPx <= this.targetElement.offsetWidth + largestElementPx; index++) {
+            const element = this.movingPart.children[index];
+            const clone = element.cloneNode(true);
+            this.movingPart.appendChild(clone);
+            elementsTotalWidthPx += element.offsetWidth;
+        }
+        this.callAfterDomUpdate(() => this.makeAnimation());
+    }
+    constructor(target, options) {
+        if (!target.children.length) {
+            throw new Error('Target element empty');
+        }
+        this.targetElement = target;
+        this.targetElement.style.overflow = 'hidden';
+        this.options = Object.assign({ direction: 'left', animation: 'linear', delayBetweenAnimationsMS: 0, speed: 10, finishAnimationBeforePause: false }, options);
+        /**
+         * Move elements from target element to initialMovingPart & get initialTotalWidthPx and largestElementPx
+         * used when initalizing to calculate how many elements are required to fill target element width
+         */
+        this.initialMovingPart = document.createElement('div');
+        let initialTotalWidthPx = 0, largestElementPx = 0;
+        Object.values(this.targetElement.children).forEach((element) => {
+            const { offsetWidth: currentElementWidthPx } = element;
+            if (currentElementWidthPx > largestElementPx) {
+                largestElementPx = currentElementWidthPx;
+            }
+            const clone = element.cloneNode(true);
+            this.initialMovingPart.appendChild(clone);
+            this.targetElement.removeChild(element);
+            initialTotalWidthPx += currentElementWidthPx;
+        });
+        this.callAfterDomUpdate(() => this.init(initialTotalWidthPx, largestElementPx));
+        // Re-initalize on target element *width* change
+        this.prevTargetWidthPx = this.targetElement.offsetWidth;
+        let resizeThrottleTimeout;
+        this.targetResizeObserver = new ResizeObserver(() => {
+            const { offsetWidth: targetWidthPx } = this.targetElement;
+            if (this.prevTargetWidthPx !== targetWidthPx) {
+                this.prevTargetWidthPx = targetWidthPx;
+                clearTimeout(resizeThrottleTimeout);
+                resizeThrottleTimeout = window.setTimeout(() => this.init(initialTotalWidthPx, largestElementPx), 250);
+            }
+        });
+        this.targetResizeObserver.observe(this.targetElement);
+        // Pause movement when mouse is over
+        this.targetElement.addEventListener('mouseover', () => this.pause());
+        this.targetElement.addEventListener('mouseleave', () => this.unpause());
+    }
+    callAfterDomUpdate(fn) {
+        const intermediate = () => window.requestAnimationFrame(fn);
+        window.requestAnimationFrame(intermediate);
+    }
 }
-
-if (typeof(module) === 'object') module.exports = Scroller;
+export default Scroller;

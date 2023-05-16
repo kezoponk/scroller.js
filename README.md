@@ -1,5 +1,6 @@
 # Scroller.js
-Create responsive, pausable moving elements, left or right, with a simple one-liner<br>
+Create responsive, pausable moving elements, left or right, with one simple line
+<br/><br/>
 
 ## Installation
 Install from the command line:
@@ -8,100 +9,84 @@ $ npm install @kezoponk/scroller
 ```
 Install via package.json:
 ```json
-"@kezoponk/scroller": "1.1.1" 
+"@kezoponk/scroller": "1.1.2" 
 ```
-Or download Scroller.min.js or AnimatedScroller.min.js from dist/ <br>
-**AND** the dependency <a href="https://github.com/marcj/css-element-queries/releases"> css-element-queries.zip -> ResizeSensor.js </a>
+Or download dist/scroller.min.js
 ```html
-<script src="css-element-queries/src/ResizeSensor.js"></script>
-<script src="Scroller.min.js"></script>
+<script src="scroller.min.js"></script>
 ```
-<br>
+<br/>
 
 ## Usage
-| Options | Usage |
+| Option | Usage and defaults |
 | --- | --- |
-| `direction` | Left or right |
-| `speed` | Turtle: 20 - Rabbit: 120 |
-| `animation`<br/>&nbsp;**AnimatedScroller** | Animation type, works with cubic-bezier<br>Default: ease-in-out |
-| `delay`<br/>&nbsp;**AnimatedScroller** | Delay before starting next animation when last animation is finished<br>Default: 0 |
-| `finishAnimationBeforePause`<br/>&nbsp;**AnimatedScroller** | Default: false |
+| `direction` | left or right <br/>Default: left |
+| `speed` | Any number <br/>Turtle: 20 - Rabbit: 120<br/>Default: 20 |
+| `animation` | Animation type <br/>Default: linear |
+| `delayBetweenAnimationsMS` | Delay before starting next animation when last animation is finished<br>Default: 0 |
+| `finishAnimationBeforePause` | Default: false |
 
-<code>new Scroller <strong>OR</strong> AnimatedScroller('div-containing-items', { Options })</code>
+<code>new Scroller(Element, { Options });</code>
 
 **Keep in mind** eventlisteners to items in target div will get removed since cloneNode ignores them
+<br/><br/>
 
 ## Methods
-These are available for access on the scroller instance <br>
-* **pause()** <br>
-Also triggered once the scroller enters the target div <br>
-* **unpause()** <br>
-Also triggered once the scroller exit the target div <br>
-* **restore()** <br>
-Restore target div to state before implementing scroller
+These are available for access on the scroller instance <br/>
+* **pause()** <br/>
+Also triggered once mouse enters the target element <br/>
+* **unpause()** <br/>
+Also triggered once mouse exit the target element <br/>
+* **restore()** <br/>
+Restore target div to state before scroller - **can't be undone**
 
-<br>
+<br/>
 
-### Example 1 / 3
+### Example 1
 
 ```html
-<div id="scrolldiv" class="scroll-left">
-  <button class="scrollbutton">Example</button>
-  <button class="scrollbutton">Political</button>
-  <button class="scrollbutton">App</button>
-  <button class="scrollbutton">Programming</button>
-  <button class="scrollbutton">Feminist</button>
-  <button class="scrollbutton">Program</button>
-  <button class="scrollbutton">School</button>
+<div id="scrolldiv">
+  <button>Example</button>
+  <button>Political</button>
+  <button>App</button>
+  <button>Programming</button>
+  <button>Program</button>
+  <button>School</button>
 </div>
 ```
 ```javascript
-new Scroller('#scrolldiv', { direction: 'left', speed: 10 });
+new Scroller(document.getElementById('scrolldiv'), { direction: 'left', speed: 10 });
 ```
 - Scroll to left
 - Moving 1px every 10ms
 
-<br>
+<br/>
     
-### Example 2 / 3
+### Example 2
 
 ```html
-<div id="animated" style="display:flex; flex-direction:column; max-height:100px">
-  <a href="/example"><button style="min-height:50px">Example</button></a>
-  <a href="/political"><button style="min-height:30px">Political</button></a>
-  <a href="/app"><button style="min-height:30px">App</button></a>
-  <a href="/programming"><button style="min-height:30px">Programming</button></a>
-  <a href="/feminist"><button style="min-height:30px">Feminist</button></a>
-  <a href="/program"><button style="min-height:30px">Program</button></a>
-  <a href="/school"><button style="min-height:30px">School</button></a>
+<div id="animated">
+  <a href="/example"><button>Example</button></a>
+  <a href="/political"><button>Political</button></a>
+  <a href="/app"><button>App</button></a>
+  <a href="/programming"><button>Programming</button></a>
+  <a href="/program"><button>Program</button></a>
+  <a href="/school"><button>School</button></a>
 </div>
 ```
 ```javascript
-new AnimatedScroller('#animated', { direction: 'right', speed: 100, animation:'linear', delay: 500 });
+new Scroller(
+  document.getElementById('animated'), { 
+    direction: 'right', 
+    speed: 100, 
+    animation:'ease-in-out', 
+    delay: 500 
+  }
+);
 ```
 - Scroll to right
 - Moving 1px every 100ms
-- Div is 50px height
 - Ease-in-out animation on each item
-- 0.5s delay between each iteration
+- 0.5s delay between each animation
 
-<br>
-
-### Example 3 / 3
-
-```html
-<div class="scroll-right">
-  <button onclick="window.location=example.html">Example</button>
-  <button onclick="window.location=political.html">Political</button>
-  <button onclick="window.location=app.html">App</button>
-  <button onclick="window.location=programming.html">Programming</button>
-  <button onclick="window.location=feminist.html">Feminist</button>
-  <button onclick="window.location=program.html">Program</button>
-  <button onclick="window.location=school.html">School</button>
-</div>
-```
-```javascript
-new Scroller('.scroll-right', { direction: 'right', speed: 100 });
-```
-- Scroll to right
-- Moving 1px every 100ms
+<br/>

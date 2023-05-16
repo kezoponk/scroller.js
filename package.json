@@ -1,13 +1,10 @@
 {
   "name": "@kezoponk/scroller",
   "version": "1.1.1",
-  "description": "Create responsive, pausable moving elements, left or right, with a simple one-liner",
-  "main": "index.js",
+  "description": "Create responsive, pausable moving elements, left or right, with one simple line",
+  "main": "dist/scroller.min.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "css-element-queries": "^1.2.1"
+    "build": "npx -p typescript tsc"
   },
   "repository": {
     "type": "git",

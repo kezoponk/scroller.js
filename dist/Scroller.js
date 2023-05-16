@@ -91,7 +91,7 @@ class Scroller {
         }
         this.targetElement = target;
         this.targetElement.style.overflow = 'hidden';
-        this.options = Object.assign({ direction: 'left', animation: 'linear', delayBetweenAnimationsMS: 0, speed: 10, finishAnimationBeforePause: false }, options);
+        this.options = Object.assign({ direction: 'left', animation: 'linear', delayBetweenAnimationsMS: 0, speed: 20, finishAnimationBeforePause: false }, options);
         /**
          * Move elements from target element to initialMovingPart & get initialTotalWidthPx and largestElementPx
          * used when initalizing to calculate how many elements are required to fill target element width

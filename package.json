@@ -1,8 +1,8 @@
 {
   "name": "@kezoponk/scroller",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Create responsive, pausable moving elements, left or right, with one simple line",
-  "main": "dist/scroller.min.js",
+  "main": "dist/scroller.js",
   "scripts": {
     "build": "npx -p typescript tsc"
   },

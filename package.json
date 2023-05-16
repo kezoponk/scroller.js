@@ -1,6 +1,6 @@
 {
   "name": "@kezoponk/scroller",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Create responsive, pausable moving elements, left or right, with one simple line",
   "main": "dist/scroller.min.js",
   "scripts": {

@@ -1,18 +1,11 @@
+import { ScrollerConfig } from './types';
+
 /**
  * @author Albin Eriksson https://github.com/kezoponk
  * @license MIT https://opensource.org/licenses/MIT
  */
-
-interface Options { 
-  speed: number, 
-  direction: 'left' | 'right', 
-  animation: string, 
-  delayBetweenAnimationsMS: number, 
-  finishAnimationBeforePause: boolean 
-}
-
 class Scroller {
-  private options: Options;
+  private config: ScrollerConfig;
   private targetElement: HTMLElement;
   private initialMovingPart: HTMLDivElement;
   private movingPart?: HTMLDivElement;
@@ -27,7 +20,7 @@ class Scroller {
 
     const { children: movingPartChildren } = this.movingPart;
 
-    if (this.options.direction === 'left') {
+    if (this.config.direction === 'left') {
       const elementOutsideView = movingPartChildren[0];
       this.movingPart.appendChild(elementOutsideView.cloneNode(true));
       this.movingPart.removeChild(elementOutsideView);
@@ -48,13 +41,14 @@ class Scroller {
 
     const { offsetWidth: firstElementWidth } = this.movingPart.children[0] as HTMLElement;
 
-    const startPx = startValue ?? (this.options.direction === 'left' ? 0 : 0 - firstElementWidth);
-    const endPx = this.options.direction === 'left' ? 0 - firstElementWidth : 0;
+    const startPx = startValue ?? (this.config.direction === 'left' ? 0 : 0 - firstElementWidth);
+    const endPx = this.config.direction === 'left' ? 0 - firstElementWidth : 0;
 
+    // Use left instead of translateX to make pause posssible
     this.movingPart.style.left = `${startPx}px`;
     this.movingPart.style.transition = 'none';
 
-    const animationDuration = 1000 * Math.abs(endPx - startPx) / this.options.speed;
+    const animationDuration = 1000 * Math.abs(endPx - startPx) / this.config.speed;
     
     this.callAfterDomUpdate(() => {
       if (!this.movingPart) {
@@ -62,12 +56,12 @@ class Scroller {
       }
       
       this.movingPart.style.left = `${endPx}px`;
-      this.movingPart.style.transition = `left ${animationDuration}ms ${this.options.animation}`;
+      this.movingPart.style.transition = `left ${animationDuration}ms ${this.config.animation}`;
 
       // When animation is finished: move element to the end of the line (which end depends on direction) & reset animation
       this.nextAnimationResetTimeout = window.setTimeout(
         () => this.resetAnimation(), 
-        animationDuration + this.options.delayBetweenAnimationsMS
+        animationDuration + this.config.delayBetweenAnimationsMS
       );
     });
   }
@@ -75,7 +69,7 @@ class Scroller {
   public pause() {
     clearTimeout(this.nextAnimationResetTimeout);
     
-    if (!this.options.finishAnimationBeforePause && this.movingPart) {
+    if (!this.config.finishAnimationBeforePause && this.movingPart) {
       this.movingPart.style.left = `${this.movingPart.offsetLeft}px`;
       this.movingPart.style.transition = 'none';
     }
@@ -135,7 +129,7 @@ class Scroller {
     this.callAfterDomUpdate(() => this.makeAnimation());
   }
 
-  constructor(target: HTMLElement, options: { [key in keyof Options]?: Options[key] }) {
+  constructor(target: HTMLElement, config: { [key in keyof ScrollerConfig]?: ScrollerConfig[key] }) {
     if (!target.children.length) {
       throw new Error('Target element empty');
     }
@@ -143,13 +137,13 @@ class Scroller {
     this.targetElement = target;
     this.targetElement.style.overflow = 'hidden';
 
-    this.options = {
+    this.config = {
       direction: 'left',
       animation: 'linear',
       delayBetweenAnimationsMS: 0,
       speed: 20,
       finishAnimationBeforePause: false,
-      ...options
+      ...config
     }
 
     /**

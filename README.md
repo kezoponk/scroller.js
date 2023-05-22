@@ -1,5 +1,6 @@
 # Scroller.js
-Create responsive, pausable moving elements, left or right, with one simple line
+Create responsive and pausable horizontally moving elements.  
+Use the main import for standard js, or import from `dist/react` for the included React component.
 <br/><br/>
 
 ## Installation
@@ -9,12 +10,12 @@ $ npm install @kezoponk/scroller
 ```
 Install via package.json:
 ```json
-"@kezoponk/scroller": "1.1.2" 
+"@kezoponk/scroller": "1.1.5" 
 ```
 <br/>
 
 ## Usage
-| Option | Usage and defaults |
+| Option / Prop | Description and defaults |
 | --- | --- |
 | `direction` | left or right <br/>Default: left |
 | `speed` | Any number <br/>Turtle: 20 - Rabbit: 120<br/>Default: 20 |
@@ -22,13 +23,12 @@ Install via package.json:
 | `delayBetweenAnimationsMS` | Delay before starting next animation when last animation is finished<br>Default: 0 |
 | `finishAnimationBeforePause` | Default: false |
 
-<code>new Scroller(Element, { Options });</code>
 
 **Keep in mind** eventlisteners to items in target div will get removed since cloneNode ignores them
 <br/><br/>
 
 ## Methods
-These are available for access on the scroller instance <br/>
+These are available for access on the scroller instance/ref <br/>
 * **pause()** <br/>
 Also triggered once mouse enters the target element <br/>
 * **unpause()** <br/>
@@ -38,7 +38,7 @@ Restore target div to state before scroller - **can't be undone**
 
 <br/>
 
-### Example 1
+### Example with standard JS
 
 ```html
 <div id="scrolldiv">
@@ -58,31 +58,20 @@ new Scroller(document.getElementById('scrolldiv'), { direction: 'left', speed: 1
 
 <br/>
     
-### Example 2
+### Example with React
 
-```html
-<div id="animated">
+```jsx
+<Scroller direction="right" speed={100} animation="ease-in-out">
   <a href="/example"><button>Example</button></a>
   <a href="/political"><button>Political</button></a>
   <a href="/app"><button>App</button></a>
   <a href="/programming"><button>Programming</button></a>
   <a href="/program"><button>Program</button></a>
   <a href="/school"><button>School</button></a>
-</div>
-```
-```javascript
-new Scroller(
-  document.getElementById('animated'), { 
-    direction: 'right', 
-    speed: 100, 
-    animation:'ease-in-out', 
-    delay: 500 
-  }
-);
+</Scroller>
 ```
 - Scroll to right
 - Moving 1px every 100ms
 - Ease-in-out animation on each item
-- 0.5s delay between each animation
 
 <br/>

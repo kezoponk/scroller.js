@@ -30,9 +30,9 @@ Install via package.json:
 ## Methods
 These are available for access on the scroller instance/ref <br/>
 * **pause()** <br/>
-Also triggered once mouse enters the target element <br/>
+Also triggered when mouse enters the target element <br/>
 * **unpause()** <br/>
-Also triggered once mouse exit the target element <br/>
+Also triggered when mouse exits the target element <br/>
 * **restore()** <br/>
 Restore target div to state before scroller - **can't be undone**
 
